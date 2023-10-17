@@ -1,32 +1,34 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# **PyChef**
 
-Welcome,
+## **Planning**
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+### **Target Audience**
 
-## Reminders
+- People who want to save recipes into a digital cookbook.
+- People who want to look at different recipes in a digital cookbook.
+- People who want to revisit their digital cookbook and look up the recipes they saved.
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+### **User Stories**
 
-## Creating the Heroku app
+- As a user, I want to create an account and login.
+- As a user, I want to create a digital cookbook with my recipes.
+- As a user, I want to save my recipes in different categories.
+- As a user, I want to look up my recipes after saving them.
+- As a user, I want to clearly see the ingredients and instructions to each recipe.
+- As a user, I want to get clear feedback from the application.
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+- As the site owner, I want to ensure the users have a good experience using the digital cookbook.
+- As the site owner, I want to provide the users with helpful feedback.
+- As the site owner, I want to be able to differentiate between users and show them the according recipes.
 
-1. `heroku/python`
-2. `heroku/nodejs`
+### **Features to achieve the goals**
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+- Users can create an account with a username and password and login to their account.
+- The application represents a digital cookbook where each user can save multiple recipes.
+- Each recipe has to be assigned to a category.
+- Users can search for recipes after logging in.
+- Each recipe is presented in a nice layout showing the according ingredients and instructions.
+- User errors are handled accordingly and clear feedback will be given to the user.
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
+- The ensure a good user experience there will be a well-planned layout, as well as clear feedback to the users.
+- Only recipes that belong to the logged-in user are shown for them.
