@@ -1,5 +1,6 @@
 # **PyChef**
 
+
 ## **Planning**
 
 ### **Target Audience**
@@ -32,3 +33,7 @@
 
 - The ensure a good user experience there will be a well-planned layout, as well as clear feedback to the users.
 - Only recipes that belong to the logged-in user are shown for them.
+
+### **Flowchart**
+To visualize the necessary steps to create my cookbook, I created a flowchart using [Lucidchart](https://lucid.app/lucidchart/11478dde-0293-49ef-95b3-c7f9f842cd13/edit?viewport_loc=-61%2C227%2C2994%2C1412%2C0_0&invitationId=inv_b097e12e-4e66-440b-bf17-5d18fb3dd66d).
+![Flow Chart](docs/screenshots/flowchart.png)
