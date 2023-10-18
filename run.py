@@ -4,6 +4,7 @@ from google.oauth2.service_account import Credentials
 from pyfiglet import Figlet
 from rich.console import Console
 from rich.theme import Theme
+import os
 
 # -------------------------- API CONNECTION ---------------------------
 SCOPE = [
@@ -28,7 +29,16 @@ custom_theme = Theme({
 
 console = Console(theme=custom_theme)
 
+def clear_console():
+    """
+    Clear the console
+    Code taken from https://www.delftstack.com/howto/python/python-clear-console/
+    :return:
+    """
+    return os.system("cls" if os.name in ("nt", "dos") else "clear")
+
 def show_welcome_message():
+    clear_console()
     f = Figlet(font="big")
     console.print(f.renderText("PyChef"), style="blue")
     console.print("Select an option", style="heading")
