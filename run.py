@@ -1,6 +1,8 @@
 # ----------------------------- IMPORTS -------------------------------
 import gspread
 from google.oauth2.service_account import Credentials
+from pyfiglet import Figlet
+from colorama import Fore
 
 # -------------------------- API CONNECTION ---------------------------
 SCOPE = [
@@ -16,5 +18,8 @@ SHEET = GSPREAD_CLIENT.open("PyChef")
 
 users = SHEET.worksheet("users")
 
-user_data = users.get_all_values()
-print(user_data)
+def show_welcome_message():
+    f = Figlet(font='big')
+    print(Fore.BLUE + f.renderText('PyChef'))
+
+show_welcome_message()
