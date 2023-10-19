@@ -41,6 +41,21 @@ def show_welcome_message():
     clear_console()
     f = Figlet(font="big")
     console.print(f.renderText("PyChef"), style="blue")
+    account_selection()
+
+def account_selection():
     console.print("Select an option", style="heading")
+    console.print("1 Log in to your account", style="option")
+    console.print("2 Create an account", style="option")
+
+    selection = input("\nEnter 1 or 2: \n")
+
+    if selection == "1":
+        print("1 selected")
+    elif selection == "2":
+        print("2 selected")
+    else:
+        print("Please select either 1 or 2")
+
 
 show_welcome_message()
