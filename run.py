@@ -24,7 +24,7 @@ users = SHEET.worksheet("users")
 custom_theme = Theme({
     "error": "bold red",
     "heading": "bold underline",
-    "option": "yellow",
+    "option": "bold",
     "info": "dim",
     "success": "bold green"
 })
@@ -187,13 +187,40 @@ def view_create_selection():
             else:
                 raise ValueError
 
-        except ValueError as e:
+        except ValueError:
             console.print("Please select either 1 or 2", style="error")
 
 def view_recipe():
     print("view")
 def create_recipe():
-    print("create")
+    clear_console()
+    console.print("Please choose the category of your recipe", style="heading")
+    console.print("1 Vegetarian :avocado:", style="option")
+    console.print("2 Meat :poultry_leg:", style="option")
+    console.print("3 Fish :fish:", style="option")
+
+    # input category until valid selection was made
+    while True:
+        try:
+            category = input("\nCategory: \n")
+
+            if category == "1":
+                category = "vegetarian"
+                break
+            elif category == "2":
+                category = "meat"
+                break
+            elif category == "3":
+                category = "fish"
+                break
+            else:
+                raise ValueError
+
+        except ValueError as e:
+            console.print("Please select either 1, 2 or 3", style="error")
+            continue
+
+    console.print(f"\nYou selected {category}", style="success")
 
 def increment_id(sheet):
     last_id = sheet.get_all_values()[-1][0]
