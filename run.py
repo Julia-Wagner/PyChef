@@ -194,6 +194,10 @@ def view_recipe():
     print("view")
 def create_recipe():
     clear_console()
+
+    recipe_category = choose_category()
+
+def choose_category():
     console.print("Please choose the category of your recipe", style="heading")
     console.print("1 Vegetarian :avocado:", style="option")
     console.print("2 Meat :poultry_leg:", style="option")
@@ -205,13 +209,13 @@ def create_recipe():
             category = input("\nCategory: \n")
 
             if category == "1":
-                category = "vegetarian"
+                category = "Vegetarian"
                 break
             elif category == "2":
-                category = "meat"
+                category = "Meat"
                 break
             elif category == "3":
-                category = "fish"
+                category = "Fish"
                 break
             else:
                 raise ValueError
@@ -220,7 +224,8 @@ def create_recipe():
             console.print("Please select either 1, 2 or 3", style="error")
             continue
 
-    console.print(f"\nYou selected {category}", style="success")
+    console.print(f"\nYou selected [underline]{category}[underline]", style="success")
+    return category
 
 def increment_id(sheet):
     last_id = sheet.get_all_values()[-1][0]
