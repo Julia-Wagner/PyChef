@@ -24,7 +24,8 @@ users = SHEET.worksheet("users")
 custom_theme = Theme({
     "error": "bold red",
     "heading": "bold underline",
-    "option": "yellow"
+    "option": "yellow",
+    "info": "dim"
 })
 
 console = Console(theme=custom_theme)
@@ -51,11 +52,55 @@ def account_selection():
     selection = input("\nEnter 1 or 2: \n")
 
     if selection == "1":
-        print("1 selected")
+        login()
     elif selection == "2":
-        print("2 selected")
+        create_account()
     else:
-        print("Please select either 1 or 2")
+        console.print("Please select either 1 or 2", style="error")
+
+def login():
+    print("1")
+
+def create_account():
+    clear_console()
+    console.print("Please enter a username", style="heading")
+    console.print("Username must be at least 4 characters long", style="info")
+
+    # input username until valid selection was made
+    while True:
+        try:
+            username = input("\nUsername: \n")
+
+            if len(username) < 4:
+                raise ValueError("Username must be at least 4 characters long")
+
+            if users.find(username, in_column=2):
+                raise ValueError("Username is already taken")
+
+        except ValueError as e:
+            console.print(f"{e}, please choose another username", style="error")
+            continue
+        else:
+            break
+
+    console.print("\nPlease enter a password", style="heading")
+    console.print("Password must be at least 6 characters long", style="info")
+
+    # input password until valid selection was made
+    while True:
+        try:
+            password = input("\nPassword: \n")
+
+            if len(password) < 6:
+                raise ValueError("Password must be at least 4 characters long")
+
+        except ValueError as e:
+            console.print(f"{e}, please choose another password", style="error")
+            continue
+        else:
+            break
+
+    console.print("\nCreating account...", style="info")
 
 
 show_welcome_message()
