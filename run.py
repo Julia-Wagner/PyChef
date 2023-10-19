@@ -25,7 +25,8 @@ custom_theme = Theme({
     "error": "bold red",
     "heading": "bold underline",
     "option": "yellow",
-    "info": "dim"
+    "info": "dim",
+    "success": "bold green"
 })
 
 console = Console(theme=custom_theme)
@@ -102,5 +103,18 @@ def create_account():
 
     console.print("\nCreating account...", style="info")
 
+    new_account = [increment_id(users), username, password]
+    users.append_row(new_account)
+
+    console.print("\nAccount created successfully!", style="success")
+
+def increment_id(sheet):
+    last_id = sheet.get_all_values()[-1][0]
+
+    if last_id != "id":
+        new_id = int(last_id) + 1
+    else:
+        new_id = 1
+    return new_id
 
 show_welcome_message()
