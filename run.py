@@ -4,6 +4,7 @@ from google.oauth2.service_account import Credentials
 from pyfiglet import Figlet
 from rich.console import Console
 from rich.theme import Theme
+from getpass import getpass
 import os
 
 # -------------------------- API CONNECTION ---------------------------
@@ -60,7 +61,39 @@ def account_selection():
         console.print("Please select either 1 or 2", style="error")
 
 def login():
-    print("1")
+    # input username until correct
+    while True:
+        try:
+            username = input("\nPlease enter your username: \n")
+
+            if users.find(username, in_column=2) is None:
+                raise ValueError("Username not found")
+
+        except ValueError as e:
+            console.print(f"{e}, please enter the correct username", style="error")
+            continue
+        else:
+            break
+
+    user_row = users.find(username, in_column=2).row
+    row_values = users.row_values(user_row)
+
+    # input password until correct
+    while True:
+        try:
+            console.print("\nNote: for security reasons your password won´t be displayed while typing", style="info")
+            password = getpass("Please enter your password: \n")
+
+            if row_values[2] != password:
+                raise ValueError("Password incorrect")
+
+        except ValueError as e:
+            console.print(f"{e}, please enter your password", style="error")
+            continue
+        else:
+            break
+
+    console.print("\nYour are logged in!", style="success")
 
 def create_account():
     clear_console()
