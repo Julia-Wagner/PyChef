@@ -1,7 +1,6 @@
 # ----------------------------- IMPORTS -------------------------------
 import gspread
 from google.oauth2.service_account import Credentials
-from pyfiglet import Figlet
 from rich.console import Console
 from rich.theme import Theme
 from getpass import getpass
@@ -42,25 +41,52 @@ def clear_console():
 
 def show_welcome_message():
     clear_console()
-    f = Figlet(font="big")
-    console.print(f.renderText("PyChef"), style="blue")
+
+    console.print("""  __________________   __________________
+.-/| ---------------- \ / ---------------- |\-.
+|||| ---------------- ||| ---------------- ||||
+|||| ---- PyChef ---- ||| ---------------- ||||
+|||| ---------------- ||| ---------------- ||||
+|||| ---------------- ||| ---------------- ||||
+|||| ---------------- ||| ---------------- ||||
+|||| ---------------- ||| ---------------- ||||
+|||| ---------------- ||| ---------------- ||||
+||||_________________ ||| _________________||||
+||/===================\|/===================\||
+`--------------------~___~-------------------''\n""", justify="center")
+
+    console.print("Welcome to your digital cookbook!", style="bold white on green", justify="center")
+
     account_selection()
 
 def account_selection():
-    console.print("Select an option", style="heading")
+    console.print("\nSelect an option\n", style="heading")
     console.print("1 Log in to your account", style="option")
     console.print("2 Create an account", style="option")
 
-    selection = input("\nEnter 1 or 2: \n")
+    # show until correct selection is made
+    while True:
+        try:
+            selection = input("\nEnter 1 or 2: \n")
 
-    if selection == "1":
-        login()
-    elif selection == "2":
-        create_account()
-    else:
-        console.print("Please select either 1 or 2", style="error")
+            if selection == "1":
+                login()
+                break
+            elif selection == "2":
+                create_account()
+                break
+            else:
+                raise ValueError
 
-def login():
+        except ValueError as e:
+            console.print("Please select either 1 or 2", style="error")
+
+def login(new_account = False):
+    clear_console()
+
+    if new_account:
+        console.print("\nAccount created successfully!\nYou can now log in", style="success")
+
     # input username until correct
     while True:
         try:
@@ -139,7 +165,7 @@ def create_account():
     new_account = [increment_id(users), username, password]
     users.append_row(new_account)
 
-    console.print("\nAccount created successfully!", style="success")
+    login(True)
 
 def increment_id(sheet):
     last_id = sheet.get_all_values()[-1][0]
