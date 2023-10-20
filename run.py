@@ -1,10 +1,8 @@
 # ----------------------------- IMPORTS -------------------------------
 import gspread
-from google.oauth2.service_account import Credentials
-from rich.console import Console
-from rich.theme import Theme
 from getpass import getpass
-import os
+from google.oauth2.service_account import Credentials
+from classes.mixins import ClearConsole, StyleConsole
 
 # -------------------------- API CONNECTION ---------------------------
 SCOPE = [
@@ -21,27 +19,10 @@ SHEET = GSPREAD_CLIENT.open("PyChef")
 users = SHEET.worksheet("users")
 recipes = SHEET.worksheet("recipes")
 
-# ------------------------- STYLING THEMES ---------------------------
-custom_theme = Theme({
-    "error": "bold red",
-    "heading": "bold underline",
-    "option": "bold",
-    "info": "dim",
-    "success": "bold green"
-})
-
-console = Console(theme=custom_theme)
-
-def clear_console():
-    """
-    Clear the console
-    Code taken from https://www.delftstack.com/howto/python/python-clear-console/
-    :return:
-    """
-    return os.system("cls" if os.name in ("nt", "dos") else "clear")
+console = StyleConsole.style()
 
 def show_welcome_message():
-    clear_console()
+    ClearConsole.clear_console()
 
     console.print("""  __________________   __________________
 .-/| ---------------- \ / ---------------- |\-.
@@ -83,7 +64,7 @@ def account_selection():
             console.print("Please select either 1 or 2", style="error")
 
 def login(new_account = False):
-    clear_console()
+    ClearConsole.clear_console()
 
     if new_account:
         console.print("\nAccount created successfully!\nYou can now log in", style="success")
@@ -123,7 +104,7 @@ def login(new_account = False):
     view_create_selection()
 
 def create_account():
-    clear_console()
+    ClearConsole.clear_console()
     console.print("Please enter a username", style="heading")
     console.print("Username must be at least 4 characters long", style="info")
 
@@ -169,7 +150,7 @@ def create_account():
     login(True)
 
 def view_create_selection():
-    clear_console()
+    ClearConsole.clear_console()
     console.print("Do you want to view or create a recipe?\n", style="heading")
     console.print("1 View recipe", style="option")
     console.print("2 Create a new recipe", style="option")
@@ -193,8 +174,9 @@ def view_create_selection():
 
 def view_recipe():
     print("view")
+
 def create_recipe():
-    clear_console()
+    ClearConsole.clear_console()
 
     recipe_category = choose_category()
     recipe_name = choose_name()
