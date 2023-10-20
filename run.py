@@ -1,8 +1,8 @@
 # ----------------------------- IMPORTS -------------------------------
 import gspread
-from getpass import getpass
 from google.oauth2.service_account import Credentials
 from classes.mixins import ClearConsole, StyleConsole
+from classes.user import User
 
 # -------------------------- API CONNECTION ---------------------------
 SCOPE = [
@@ -53,6 +53,7 @@ def account_selection():
 
             if selection == "1":
                 login()
+                # view_create_selection()
                 break
             elif selection == "2":
                 create_account()
@@ -63,91 +64,6 @@ def account_selection():
         except ValueError as e:
             console.print("Please select either 1 or 2", style="error")
 
-def login(new_account = False):
-    ClearConsole.clear_console()
-
-    if new_account:
-        console.print("\nAccount created successfully!\nYou can now log in", style="success")
-
-    # input username until correct
-    while True:
-        try:
-            username = input("\nPlease enter your username: \n")
-
-            if users.find(username, in_column=2) is None:
-                raise ValueError("Username not found")
-
-        except ValueError as e:
-            console.print(f"{e}, please enter the correct username", style="error")
-            continue
-        else:
-            break
-
-    user_row = users.find(username, in_column=2).row
-    row_values = users.row_values(user_row)
-
-    # input password until correct
-    while True:
-        try:
-            console.print("\nNote: for security reasons your password won´t be displayed while typing", style="info")
-            password = getpass("Please enter your password: \n")
-
-            if row_values[2] != password:
-                raise ValueError("Password incorrect")
-
-        except ValueError as e:
-            console.print(f"{e}, please enter your password", style="error")
-            continue
-        else:
-            break
-
-    view_create_selection()
-
-def create_account():
-    ClearConsole.clear_console()
-    console.print("Please enter a username", style="heading")
-    console.print("Username must be at least 4 characters long", style="info")
-
-    # input username until valid selection was made
-    while True:
-        try:
-            username = input("\nUsername: \n")
-
-            if len(username) < 4:
-                raise ValueError("Username must be at least 4 characters long")
-
-            if users.find(username, in_column=2):
-                raise ValueError("Username is already taken")
-
-        except ValueError as e:
-            console.print(f"{e}, please choose another username", style="error")
-            continue
-        else:
-            break
-
-    console.print("\nPlease enter a password", style="heading")
-    console.print("Password must be at least 6 characters long", style="info")
-
-    # input password until valid selection was made
-    while True:
-        try:
-            password = input("\nPassword: \n")
-
-            if len(password) < 6:
-                raise ValueError("Password must be at least 4 characters long")
-
-        except ValueError as e:
-            console.print(f"{e}, please choose another password", style="error")
-            continue
-        else:
-            break
-
-    console.print("\nCreating account...", style="info")
-
-    new_account = [increment_id(users), username, password]
-    users.append_row(new_account)
-
-    login(True)
 
 def view_create_selection():
     ClearConsole.clear_console()
