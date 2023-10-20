@@ -19,6 +19,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("PyChef")
 
 users = SHEET.worksheet("users")
+recipes = SHEET.worksheet("recipes")
 
 # ------------------------- STYLING THEMES ---------------------------
 custom_theme = Theme({
@@ -196,6 +197,13 @@ def create_recipe():
     clear_console()
 
     recipe_category = choose_category()
+    recipe_name = choose_name()
+    recipe_instructions = input("\nPlease enter the instructions for your recipe: \n")
+
+    console.print("\nSaving recipe...", style="info")
+
+    new_recipe = [increment_id(recipes), recipe_category, recipe_name, recipe_instructions]
+    recipes.append_row(new_recipe)
 
 def choose_category():
     console.print("Please choose the category of your recipe", style="heading")
@@ -220,12 +228,33 @@ def choose_category():
             else:
                 raise ValueError
 
-        except ValueError as e:
+        except ValueError:
             console.print("Please select either 1, 2 or 3", style="error")
             continue
 
-    console.print(f"\nYou selected [underline]{category}[underline]", style="success")
+    console.print(f"\nRecipe category: [underline]{category}[underline]", style="success")
     return category
+
+def choose_name():
+    console.print("\nPlease enter a name for your recipe", style="heading")
+    console.print("Name must be between 3 and 15 characters long", style="info")
+
+    # input name until valid selection was made
+    while True:
+        try:
+            recipe_name = input("\nName: \n")
+
+            if len(recipe_name) < 3 or len(recipe_name) > 15:
+                raise ValueError("Name must be between 3 and 15 characters long")
+
+        except ValueError as e:
+            console.print(f"{e}, please choose a valid name", style="error")
+            continue
+        else:
+            break
+
+    console.print(f"\nRecipe name: [underline]{recipe_name}[underline]", style="success")
+    return recipe_name
 
 def increment_id(sheet):
     last_id = sheet.get_all_values()[-1][0]
