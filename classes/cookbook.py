@@ -3,7 +3,7 @@ from .sheet import SheetService
 from getpass import getpass
 
 
-class Cookbook(ClearConsole, StyleConsole):
+class Cookbook(ClearConsole, StyleConsole, SheetService):
     """
     Main Class to interact with the user and call other classes
     """
@@ -12,12 +12,12 @@ class Cookbook(ClearConsole, StyleConsole):
     recipes = SheetService.get_worksheet("recipes")
 
     def __init__(self):
-        ClearConsole.clear_console()
+        self.clear_console()
         self.show_welcome_message()
 
     @classmethod
     def show_welcome_message(cls):
-        ClearConsole.clear_console()
+        cls.clear_console()
 
         cls.console.print("""  __________________   __________________
     .-/| ---------------- \ / ---------------- |\-.
@@ -34,70 +34,74 @@ class Cookbook(ClearConsole, StyleConsole):
 
         cls.console.print("Welcome to your digital cookbook!", style="bold white on green", justify="center")
 
-        #account_selection()
+        cls.account_selection()
 
-    # def account_selection():
-    #     console.print("\nSelect an option\n", style="heading")
-    #     console.print("1 Log in to your account", style="option")
-    #     console.print("2 Create an account", style="option")
-    #
-    #     # show until correct selection is made
-    #     while True:
-    #         try:
-    #             selection = input("\nEnter 1 or 2: \n")
-    #
-    #             if selection == "1":
-    #                 login()
-    #                 # view_create_selection()
-    #                 break
-    #             elif selection == "2":
-    #                 create_account()
-    #                 break
-    #             else:
-    #                 raise ValueError
-    #
-    #         except ValueError:
-    #             console.print("Please select either 1 or 2", style="error")
-    #
-    # def login(new_account = False):
-    #     ClearConsole.clear_console()
-    #
-    #     if new_account:
-    #         console.print("\nAccount created successfully!\nYou can now log in", style="success")
-    #
-    #     # input username until correct
-    #     while True:
-    #         try:
-    #             username = input("\nPlease enter your username: \n")
-    #
-    #             if users.find(username, in_column=2) is None:
-    #                 raise ValueError("Username not found")
-    #
-    #         except ValueError as e:
-    #             console.print(f"{e}, please enter the correct username", style="error")
-    #             continue
-    #         else:
-    #             break
-    #
-    #     user_row = users.find(username, in_column=2).row
-    #     row_values = users.row_values(user_row)
-    #
-    #     # input password until correct
-    #     while True:
-    #         try:
-    #             console.print("\nNote: for security reasons your password won´t be displayed while typing", style="info")
-    #             password = getpass("Please enter your password: \n")
-    #
-    #             if row_values[2] != password:
-    #                 raise ValueError("Password incorrect")
-    #
-    #         except ValueError as e:
-    #             console.print(f"{e}, please enter your password", style="error")
-    #             continue
-    #         else:
-    #             break
-    #
-    #     view_create_selection()
+    @classmethod
+    def account_selection(cls):
+        cls.console.print("\nSelect an option\n", style="heading")
+        cls.console.print("1 Log in to your account", style="option")
+        cls.console.print("2 Create an account", style="option")
+
+        # show until correct selection is made
+        while True:
+            try:
+                selection = input("\nEnter 1 or 2: \n")
+
+                if selection == "1":
+                    print("login")
+                    cls.login()
+                    break
+                elif selection == "2":
+                    print("create")
+                    #create_account()
+                    break
+                else:
+                    raise ValueError
+
+            except ValueError:
+                cls.console.print("Please select either 1 or 2", style="error")
+
+    @classmethod
+    def login(cls, new_account = False):
+        cls.clear_console()
+
+        if new_account:
+            cls.console.print("\nAccount created successfully!\nYou can now log in", style="success")
+
+        # input username until correct
+        while True:
+            try:
+                username = input("\nPlease enter your username: \n")
+
+                if not cls.get_entry("users", username, 2):
+                    raise ValueError("Username not found")
+
+            except ValueError as e:
+                cls.console.print(f"{e}, please enter the correct username", style="error")
+                continue
+            else:
+                break
+
+        user_row = cls.get_entry("users", username, 2).row
+        row_values = cls.get_row_values("users", user_row)
+
+        # input password until correct
+        while True:
+            try:
+                cls.console.print("\nNote: for security reasons your password won´t be displayed while typing", style="info")
+                password = getpass("Please enter your password: \n")
+
+                if row_values[2] != password:
+                    raise ValueError("Password incorrect")
+
+            except ValueError as e:
+                cls.console.print(f"{e}, please enter your password", style="error")
+                continue
+            else:
+                break
+
+        print("logged in")
+        # view_create_selection()
     #
     # def create_account():
     #     ClearConsole.clear_console()
