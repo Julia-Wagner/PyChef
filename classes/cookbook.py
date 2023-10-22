@@ -178,13 +178,20 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
                 cls.console.print("Please select either 1 or 2", style="error")
 
     @classmethod
-    def view_recipe(cls, current_user):
+    def view_recipe(cls, current_user, recipe = False):
+        cls.clear_console()
+
+        if not recipe:
+            cls.console.print("What kind of recipe are you looking for?", style="heading")
+            recipe_category = cls.choose_category()
+
         print(current_user.username)
 
     @classmethod
     def create_recipe(cls, current_user):
         cls.clear_console()
 
+        cls.console.print("Please choose the category of your recipe", style="heading")
         recipe_category = cls.choose_category()
         recipe_name = cls.choose_name()
         recipe_instructions = input("\nPlease enter the instructions for your recipe: \n")
@@ -194,11 +201,10 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         new_recipe = Recipe(cls.increment_id("recipes"), recipe_category, recipe_name, recipe_instructions, current_user.user_id)
         new_recipe.add_recipe_to_sheet()
 
-        cls.console.print("\nRecipe created successfully!", style="success")
+        cls.view_recipe(current_user, new_recipe)
 
     @classmethod
     def choose_category(cls):
-        cls.console.print("Please choose the category of your recipe", style="heading")
         cls.console.print("1 Vegetarian :avocado:", style="option")
         cls.console.print("2 Meat :poultry_leg:", style="option")
         cls.console.print("3 Fish :fish:", style="option")
