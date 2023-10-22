@@ -47,6 +47,7 @@ class SheetService:
     def get_entry(cls, sheet_name, value, column):
         """
         Check if the given value exists in the given column of a specific worksheet
+        If yes, return the Cell
         :param string sheet_name: the name of the worksheet
         :param string value: the value to search for in the worksheet
         :param int column: the column to look in
@@ -56,3 +57,16 @@ class SheetService:
         if entry is None:
             return False
         return entry
+
+    @classmethod
+    def get_row_values(cls, sheet_name, row):
+        """
+        Get the values of a specific row in the given worksheet
+        :param string sheet_name: the name of the worksheet
+        :param int row: the row to look in
+        :return: False or found entry
+        """
+        row_values = cls.get_worksheet(sheet_name).row_values(row)
+        if not row_values:
+            return False
+        return row_values
