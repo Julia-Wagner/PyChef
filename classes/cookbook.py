@@ -1,5 +1,6 @@
 from .mixins import ClearConsole, StyleConsole
 from .sheet import SheetService
+from .user import User
 from getpass import getpass
 
 
@@ -53,7 +54,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
                     break
                 elif selection == "2":
                     print("create")
-                    #create_account()
+                    cls.create_account()
                     break
                 else:
                     raise ValueError
@@ -102,53 +103,54 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
 
         print("logged in")
         # view_create_selection()
-    #
-    # def create_account():
-    #     ClearConsole.clear_console()
-    #     console.print("Please enter a username", style="heading")
-    #     console.print("Username must be at least 4 characters long", style="info")
-    #
-    #     # input username until valid selection was made
-    #     while True:
-    #         try:
-    #             username = input("\nUsername: \n")
-    #
-    #             if len(username) < 4:
-    #                 raise ValueError("Username must be at least 4 characters long")
-    #
-    #             if users.find(username, in_column=2):
-    #                 raise ValueError("Username is already taken")
-    #
-    #         except ValueError as e:
-    #             console.print(f"{e}, please choose another username", style="error")
-    #             continue
-    #         else:
-    #             break
-    #
-    #     console.print("\nPlease enter a password", style="heading")
-    #     console.print("Password must be at least 6 characters long", style="info")
-    #
-    #     # input password until valid selection was made
-    #     while True:
-    #         try:
-    #             password = input("\nPassword: \n")
-    #
-    #             if len(password) < 6:
-    #                 raise ValueError("Password must be at least 4 characters long")
-    #
-    #         except ValueError as e:
-    #             console.print(f"{e}, please choose another password", style="error")
-    #             continue
-    #         else:
-    #             break
-    #
-    #     console.print("\nCreating account...", style="info")
-    #
-    #     new_account = [SheetService.increment_id("users"), username, password]
-    #     users.append_row(new_account)
-    #
-    #     login(True)
-    #
+
+    @classmethod
+    def create_account(cls):
+        cls.clear_console()
+        cls.console.print("Please enter a username", style="heading")
+        cls.console.print("Username must be at least 4 characters long", style="info")
+
+        # input username until valid selection was made
+        while True:
+            try:
+                username = input("\nUsername: \n")
+
+                if len(username) < 4:
+                    raise ValueError("Username must be at least 4 characters long")
+
+                if cls.get_entry("users", username, 2):
+                    raise ValueError("Username is already taken")
+
+            except ValueError as e:
+                cls.console.print(f"{e}, please choose another username", style="error")
+                continue
+            else:
+                break
+
+        cls.console.print("\nPlease enter a password", style="heading")
+        cls.console.print("Password must be at least 6 characters long", style="info")
+
+        # input password until valid selection was made
+        while True:
+            try:
+                password = input("\nPassword: \n")
+
+                if len(password) < 6:
+                    raise ValueError("Password must be at least 4 characters long")
+
+            except ValueError as e:
+                cls.console.print(f"{e}, please choose another password", style="error")
+                continue
+            else:
+                break
+
+        cls.console.print("\nCreating account...", style="info")
+
+        # create account and add it to worksheet in User class
+        user = User(cls.increment_id("users"), username, password)
+
+        cls.login(True)
+
     # def view_create_selection():
     #     ClearConsole.clear_console()
     #     console.print("Do you want to view or create a recipe?\n", style="heading")
