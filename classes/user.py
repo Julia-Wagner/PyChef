@@ -15,8 +15,19 @@ class User(ClearConsole, StyleConsole, SheetService):
         self.username = username
         self.password = password
 
-        self.add_user_to_sheet()
-
     def add_user_to_sheet(self):
+        """
+        Adds a new row with the data from the user to the worksheet
+        """
         new_account = [self.user_id, self.username, self.password]
         self.users.append_row(new_account)
+
+    @staticmethod
+    def get_user(values):
+        """
+        Creates an instance of User and returns it
+        :param list values: the worksheet row with the users data
+        :return: the user
+        """
+        user = User(int(values[0]), values[1], values[2])
+        return user

@@ -101,7 +101,8 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
             else:
                 break
 
-        cls.view_create_selection()
+        current_user = User.get_user(row_values)
+        cls.view_create_selection(current_user)
 
     @classmethod
     def create_account(cls):
@@ -146,12 +147,13 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         cls.console.print("\nCreating account...", style="info")
 
         # create account and add it to worksheet in User class
-        user = User(cls.increment_id("users"), username, password)
+        new_user = User(cls.increment_id("users"), username, password)
+        new_user.add_user_to_sheet()
 
         cls.login(True)
 
     @classmethod
-    def view_create_selection(cls):
+    def view_create_selection(cls, current_user):
         cls.clear_console()
         cls.console.print("Do you want to view or create a recipe?\n", style="heading")
         cls.console.print("1 View recipe", style="option")
@@ -164,10 +166,12 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
 
                 if selection == "1":
                     print("view")
+                    print(current_user.username)
                     # view_recipe()
                     break
                 elif selection == "2":
                     print("create")
+                    print(current_user.username)
                     # create_recipe()
                     break
                 else:
