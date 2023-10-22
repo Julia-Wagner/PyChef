@@ -101,8 +101,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
             else:
                 break
 
-        print("logged in")
-        # view_create_selection()
+        cls.view_create_selection()
 
     @classmethod
     def create_account(cls):
@@ -151,28 +150,31 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
 
         cls.login(True)
 
-    # def view_create_selection():
-    #     ClearConsole.clear_console()
-    #     console.print("Do you want to view or create a recipe?\n", style="heading")
-    #     console.print("1 View recipe", style="option")
-    #     console.print("2 Create a new recipe", style="option")
-    #
-    #     # show until correct selection is made
-    #     while True:
-    #         try:
-    #             selection = input("\nEnter 1 or 2: \n")
-    #
-    #             if selection == "1":
-    #                 view_recipe()
-    #                 break
-    #             elif selection == "2":
-    #                 create_recipe()
-    #                 break
-    #             else:
-    #                 raise ValueError
-    #
-    #         except ValueError:
-    #             console.print("Please select either 1 or 2", style="error")
+    @classmethod
+    def view_create_selection(cls):
+        cls.clear_console()
+        cls.console.print("Do you want to view or create a recipe?\n", style="heading")
+        cls.console.print("1 View recipe", style="option")
+        cls.console.print("2 Create a new recipe", style="option")
+
+        # show until correct selection is made
+        while True:
+            try:
+                selection = input("\nEnter 1 or 2: \n")
+
+                if selection == "1":
+                    print("view")
+                    # view_recipe()
+                    break
+                elif selection == "2":
+                    print("create")
+                    # create_recipe()
+                    break
+                else:
+                    raise ValueError
+
+            except ValueError:
+                cls.console.print("Please select either 1 or 2", style="error")
     #
     # def view_recipe():
     #     print("view")
