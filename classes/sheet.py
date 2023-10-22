@@ -18,14 +18,14 @@ class SheetService:
     GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
     SHEET = GSPREAD_CLIENT.open("PyChef")
 
-    @staticmethod
-    def get_worksheet(sheet_name):
-        worksheet = SheetService.SHEET.worksheet(sheet_name)
+    @classmethod
+    def get_worksheet(cls, sheet_name):
+        worksheet = cls.SHEET.worksheet(sheet_name)
         return worksheet
 
-    @staticmethod
-    def increment_id(sheet_name):
-        last_id = SheetService.get_worksheet(sheet_name).get_all_values()[-1][0]
+    @classmethod
+    def increment_id(cls, sheet_name):
+        last_id = cls.get_worksheet(sheet_name).get_all_values()[-1][0]
 
         if last_id != "id":
             new_id = int(last_id) + 1
