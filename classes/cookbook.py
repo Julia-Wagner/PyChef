@@ -1,6 +1,7 @@
 from .mixins import ClearConsole, StyleConsole
 from .sheet import SheetService
 from .user import User
+from .recipe import Recipe
 from getpass import getpass
 
 
@@ -190,8 +191,10 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
 
         cls.console.print("\nSaving recipe...", style="info")
 
-        # new_recipe = [SheetService.increment_id("recipes"), recipe_category, recipe_name, recipe_instructions]
-        # recipes.append_row(new_recipe)
+        new_recipe = Recipe(cls.increment_id("recipes"), recipe_category, recipe_name, recipe_instructions, current_user.user_id)
+        new_recipe.add_recipe_to_sheet()
+
+        cls.console.print("\nRecipe created successfully!", style="success")
 
     @classmethod
     def choose_category(cls):
