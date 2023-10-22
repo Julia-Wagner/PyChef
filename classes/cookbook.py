@@ -165,83 +165,83 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
                 selection = input("\nEnter 1 or 2: \n")
 
                 if selection == "1":
-                    print("view")
-                    print(current_user.username)
-                    # view_recipe()
+                    cls.view_recipe(current_user)
                     break
                 elif selection == "2":
-                    print("create")
-                    print(current_user.username)
-                    # create_recipe()
+                    cls.create_recipe(current_user)
                     break
                 else:
                     raise ValueError
 
             except ValueError:
                 cls.console.print("Please select either 1 or 2", style="error")
-    #
-    # def view_recipe():
-    #     print("view")
-    #
-    # def create_recipe():
-    #     ClearConsole.clear_console()
-    #
-    #     recipe_category = choose_category()
-    #     recipe_name = choose_name()
-    #     recipe_instructions = input("\nPlease enter the instructions for your recipe: \n")
-    #
-    #     console.print("\nSaving recipe...", style="info")
-    #
-    #     new_recipe = [SheetService.increment_id("recipes"), recipe_category, recipe_name, recipe_instructions]
-    #     recipes.append_row(new_recipe)
-    #
-    # def choose_category():
-    #     console.print("Please choose the category of your recipe", style="heading")
-    #     console.print("1 Vegetarian :avocado:", style="option")
-    #     console.print("2 Meat :poultry_leg:", style="option")
-    #     console.print("3 Fish :fish:", style="option")
-    #
-    #     # input category until valid selection was made
-    #     while True:
-    #         try:
-    #             category = input("\nCategory: \n")
-    #
-    #             if category == "1":
-    #                 category = "Vegetarian"
-    #                 break
-    #             elif category == "2":
-    #                 category = "Meat"
-    #                 break
-    #             elif category == "3":
-    #                 category = "Fish"
-    #                 break
-    #             else:
-    #                 raise ValueError
-    #
-    #         except ValueError:
-    #             console.print("Please select either 1, 2 or 3", style="error")
-    #             continue
-    #
-    #     console.print(f"\nRecipe category: [underline]{category}[underline]", style="success")
-    #     return category
-    #
-    # def choose_name():
-    #     console.print("\nPlease enter a name for your recipe", style="heading")
-    #     console.print("Name must be between 3 and 15 characters long", style="info")
-    #
-    #     # input name until valid selection was made
-    #     while True:
-    #         try:
-    #             recipe_name = input("\nName: \n")
-    #
-    #             if len(recipe_name) < 3 or len(recipe_name) > 15:
-    #                 raise ValueError("Name must be between 3 and 15 characters long")
-    #
-    #         except ValueError as e:
-    #             console.print(f"{e}, please choose a valid name", style="error")
-    #             continue
-    #         else:
-    #             break
-    #
-    #     console.print(f"\nRecipe name: [underline]{recipe_name}[underline]", style="success")
-    #     return recipe_name
+
+    @classmethod
+    def view_recipe(cls, current_user):
+        print(current_user.username)
+
+    @classmethod
+    def create_recipe(cls, current_user):
+        cls.clear_console()
+
+        recipe_category = cls.choose_category()
+        recipe_name = cls.choose_name()
+        recipe_instructions = input("\nPlease enter the instructions for your recipe: \n")
+
+        cls.console.print("\nSaving recipe...", style="info")
+
+        # new_recipe = [SheetService.increment_id("recipes"), recipe_category, recipe_name, recipe_instructions]
+        # recipes.append_row(new_recipe)
+
+    @classmethod
+    def choose_category(cls):
+        cls.console.print("Please choose the category of your recipe", style="heading")
+        cls.console.print("1 Vegetarian :avocado:", style="option")
+        cls.console.print("2 Meat :poultry_leg:", style="option")
+        cls.console.print("3 Fish :fish:", style="option")
+
+        # input category until valid selection was made
+        while True:
+            try:
+                category = input("\nCategory: \n")
+
+                if category == "1":
+                    category = "Vegetarian"
+                    break
+                elif category == "2":
+                    category = "Meat"
+                    break
+                elif category == "3":
+                    category = "Fish"
+                    break
+                else:
+                    raise ValueError
+
+            except ValueError:
+                cls.console.print("Please select either 1, 2 or 3", style="error")
+                continue
+
+        cls.console.print(f"\nRecipe category: [underline]{category}[underline]", style="success")
+        return category
+
+    @classmethod
+    def choose_name(cls):
+        cls.console.print("\nPlease enter a name for your recipe", style="heading")
+        cls.console.print("Name must be between 3 and 15 characters long", style="info")
+
+        # input name until valid selection was made
+        while True:
+            try:
+                recipe_name = input("\nName: \n")
+
+                if len(recipe_name) < 3 or len(recipe_name) > 15:
+                    raise ValueError("Name must be between 3 and 15 characters long")
+
+            except ValueError as e:
+                cls.console.print(f"{e}, please choose a valid name", style="error")
+                continue
+            else:
+                break
+
+        cls.console.print(f"\nRecipe name: [underline]{recipe_name}[underline]", style="success")
+        return recipe_name
