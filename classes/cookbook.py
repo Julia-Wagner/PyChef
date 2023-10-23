@@ -19,6 +19,10 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
 
     @classmethod
     def show_welcome_message(cls):
+        """
+        Shows ASCII Art and a welcome message.
+        Calls the next method in the program flow.
+        """
         cls.clear_console()
 
         cls.console.print("""  __________________   __________________
@@ -40,6 +44,10 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
 
     @classmethod
     def account_selection(cls):
+        """
+        Lets the user select whether they want to log in or create an account
+        and calls the according method
+        """
         cls.console.print("\nSelect an option\n", style="heading")
         cls.console.print("1 Log in to your account", style="option")
         cls.console.print("2 Create an account", style="option")
@@ -64,7 +72,14 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
                 cls.console.print("Please select either 1 or 2", style="error")
 
     @classmethod
-    def login(cls, new_account = False):
+    def login(cls, new_account=False):
+        """
+        Shows username and password input and checks if they are correct,
+        creates a new User object if they are.
+        Calls the next method in the program flow.
+
+        :param bool new_account: Show message if this is True, default is False
+        """
         cls.clear_console()
 
         if new_account:
@@ -90,7 +105,8 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         # input password until correct
         while True:
             try:
-                cls.console.print("\nNote: for security reasons your password won´t be displayed while typing", style="info")
+                cls.console.print("\nNote: for security reasons your password won´t be displayed while typing",
+                                  style="info")
                 password = getpass("Please enter your password: \n")
 
                 if row_values[2] != password:
@@ -107,6 +123,11 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
 
     @classmethod
     def create_account(cls):
+        """
+        Shows username and password input and checks if they are valid,
+        creates a new User object and stores the data in the worksheet if they are.
+        Calls the next method in the program flow.
+        """
         cls.clear_console()
         cls.console.print("Please enter a username", style="heading")
         cls.console.print("Username must be at least 4 characters long", style="info")
@@ -155,6 +176,10 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
 
     @classmethod
     def view_create_selection(cls, current_user):
+        """
+        Let the user select whether they want to view or create a recipe
+        and calls the according method
+        """
         cls.clear_console()
         cls.console.print("Do you want to view or create a recipe?\n", style="heading")
         cls.console.print("1 View recipe", style="option")
@@ -178,7 +203,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
                 cls.console.print("Please select either 1 or 2", style="error")
 
     @classmethod
-    def view_recipe(cls, current_user, recipe = False):
+    def view_recipe(cls, current_user, recipe=False):
         cls.clear_console()
 
         if not recipe:
@@ -189,6 +214,13 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
 
     @classmethod
     def create_recipe(cls, current_user):
+        """
+        Calls according methods to show category, name and instructions input
+        and checks if they are valid, creates a new Recipe object and stores the data in the worksheet if they are.
+        Calls the next method in the program flow.
+
+        :param User current_user: The user that is currently logged in
+        """
         cls.clear_console()
 
         cls.console.print("Please choose the category of your recipe", style="heading")
@@ -198,13 +230,19 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
 
         cls.console.print("\nSaving recipe...", style="info")
 
-        new_recipe = Recipe(cls.increment_id("recipes"), recipe_category, recipe_name, recipe_instructions, current_user.user_id)
+        new_recipe = Recipe(cls.increment_id("recipes"), recipe_category, recipe_name, recipe_instructions,
+                            current_user.user_id)
         new_recipe.add_recipe_to_sheet()
 
         cls.view_recipe(current_user, new_recipe)
 
     @classmethod
     def choose_category(cls):
+        """
+        Shows category input and checks if valid.
+
+        :return: selected category
+        """
         cls.console.print("1 Vegetarian :avocado:", style="option")
         cls.console.print("2 Meat :poultry_leg:", style="option")
         cls.console.print("3 Fish :fish:", style="option")
@@ -235,6 +273,11 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
 
     @classmethod
     def choose_name(cls):
+        """
+        Shows name input and checks if valid.
+
+        :return: selected name
+        """
         cls.console.print("\nPlease enter a name for your recipe", style="heading")
         cls.console.print("Name must be between 3 and 15 characters long", style="info")
 

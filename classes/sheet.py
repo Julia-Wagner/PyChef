@@ -21,7 +21,8 @@ class SheetService:
     @classmethod
     def get_worksheet(cls, sheet_name):
         """
-        Get the needed worksheet
+        Gets the needed worksheet.
+
         :param string sheet_name: the name of the worksheet
         :return: worksheet to work with
         """
@@ -31,7 +32,8 @@ class SheetService:
     @classmethod
     def increment_id(cls, sheet_name):
         """
-        Increment the id for the given worksheet
+        Increments the id for the given worksheet.
+
         :param string sheet_name: the name of the worksheet
         :return: incremented id
         """
@@ -46,8 +48,9 @@ class SheetService:
     @classmethod
     def get_entry(cls, sheet_name, value, column):
         """
-        Check if the given value exists in the given column of a specific worksheet
-        If yes, return the Cell
+        Checks if the given value exists in the given column of a specific worksheet.
+        If yes the cell is returned.
+
         :param string sheet_name: the name of the worksheet
         :param string value: the value to search for in the worksheet
         :param int column: the column to look in
@@ -61,7 +64,8 @@ class SheetService:
     @classmethod
     def get_row_values(cls, sheet_name, row):
         """
-        Get the values of a specific row in the given worksheet
+        Gets the values of a specific row in the given worksheet.
+
         :param string sheet_name: the name of the worksheet
         :param int row: the row to look in
         :return: False or found entry

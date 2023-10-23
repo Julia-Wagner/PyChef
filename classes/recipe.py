@@ -18,7 +18,7 @@ class Recipe(ClearConsole, StyleConsole, SheetService):
 
     def add_recipe_to_sheet(self):
         """
-        Adds a new row with the data from the recipe to the worksheet
+        Adds a new row with the data from the recipe to the worksheet.
         """
         new_recipe = [self.recipe_id, self.category, self.name, self.instructions, self.created_by_id]
         self.recipes.append_row(new_recipe)

@@ -7,9 +7,8 @@ class ClearConsole:
     @staticmethod
     def clear_console():
         """
-        Clear the console
+        Clears the console.
         Code taken from https://www.delftstack.com/howto/python/python-clear-console/
-        :return:
         """
         return os.system("cls" if os.name in ("nt", "dos") else "clear")
 
@@ -17,6 +16,11 @@ class ClearConsole:
 class StyleConsole:
     @staticmethod
     def style():
+        """
+        Creates a custom theme to use with the rich package
+
+        :return: Console with custom theme
+        """
         custom_theme = Theme({
             "error": "bold red",
             "heading": "bold underline",
