@@ -218,7 +218,11 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
             input("Press Enter to create a recipe...")
             cls.create_recipe(current_user)
 
-        print(available_recipes)
+        cls.clear_console()
+        cls.console.print(f"Available {recipe_category} recipes\n", style="heading")
+
+        for number, recipe in enumerate(available_recipes, start=1):
+            cls.console.print(f"{number} {recipe['name']}", style="option")
 
     @classmethod
     def view_recipe(cls, current_user):
