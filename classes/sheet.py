@@ -62,6 +62,23 @@ class SheetService:
         return entry
 
     @classmethod
+    def get_available_recipes(cls, category, user_id):
+        """
+        Gets all recipes with the given category that where created by the given user.
+
+        :param string category: the category of the recipe to look for
+        :param int user_id: the id of the user that is trying to get the recipes
+        :return: False or available recipes
+        """
+        all_recipes = cls.get_worksheet("recipes").get_all_records()
+        available_recipes = [recipe for recipe in all_recipes
+                             if recipe['category'] == category and recipe['created_by_id'] == user_id]
+
+        if not available_recipes:
+            return False
+        return available_recipes
+
+    @classmethod
     def get_row_values(cls, sheet_name, row):
         """
         Gets the values of a specific row in the given worksheet.

@@ -191,7 +191,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
                 selection = input("\nEnter 1 or 2: \n")
 
                 if selection == "1":
-                    cls.view_recipe(current_user)
+                    cls.select_recipe(current_user)
                     break
                 elif selection == "2":
                     cls.create_recipe(current_user)
@@ -203,12 +203,26 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
                 cls.console.print("Please select either 1 or 2", style="error")
 
     @classmethod
-    def view_recipe(cls, current_user, recipe=False):
+    def select_recipe(cls, current_user):
         cls.clear_console()
 
-        if not recipe:
-            cls.console.print("What kind of recipe are you looking for?", style="heading")
-            recipe_category = cls.choose_category()
+        cls.console.print("What kind of recipe are you looking for?", style="heading")
+        recipe_category = cls.choose_category()
+
+        cls.console.print("\nLooking for recipes...", style="info")
+
+        available_recipes = cls.get_available_recipes(recipe_category, current_user.user_id)
+
+        if not available_recipes:
+            cls.console.print(f"\nYou did not add any {recipe_category} recipes to your cookbook yet.", style="error")
+            input("Press Enter to create a recipe...")
+            cls.create_recipe(current_user)
+
+        print(available_recipes)
+
+    @classmethod
+    def view_recipe(cls, current_user):
+        cls.clear_console()
 
         print(current_user.username)
 
