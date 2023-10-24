@@ -2,6 +2,7 @@ from .mixins import ClearConsole, StyleConsole
 from .sheet import SheetService
 from .user import User
 from .recipe import Recipe
+from .ingredient import Ingredient
 from getpass import getpass
 
 
@@ -55,7 +56,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         # show until correct selection is made
         while True:
             try:
-                selection = input("\nEnter 1 or 2: \n")
+                selection = input("\nEnter 1 or 2: \n").strip()
 
                 if selection == "1":
                     print("login")
@@ -88,7 +89,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         # input username until correct
         while True:
             try:
-                username = input("\nPlease enter your username: \n")
+                username = input("\nPlease enter your username: \n").strip()
 
                 if not cls.get_entry("users", username, 2):
                     raise ValueError("Username not found")
@@ -107,7 +108,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
             try:
                 cls.console.print("\nNote: for security reasons your password won´t be displayed while typing",
                                   style="info")
-                password = getpass("Please enter your password: \n")
+                password = getpass("Please enter your password: \n").strip()
 
                 if row_values[2] != password:
                     raise ValueError("Password incorrect")
@@ -135,7 +136,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         # input username until valid selection was made
         while True:
             try:
-                username = input("\nUsername: \n")
+                username = input("\nUsername: \n").strip()
 
                 if len(username) < 4:
                     raise ValueError("Username must be at least 4 characters long")
@@ -155,7 +156,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         # input password until valid selection was made
         while True:
             try:
-                password = input("\nPassword: \n")
+                password = input("\nPassword: \n").strip()
 
                 if len(password) < 6:
                     raise ValueError("Password must be at least 4 characters long")
@@ -188,7 +189,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         # show until correct selection is made
         while True:
             try:
-                selection = input("\nEnter 1 or 2: \n")
+                selection = input("\nEnter 1 or 2: \n").strip()
 
                 if selection == "1":
                     cls.select_recipe(current_user)
@@ -214,7 +215,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         available_recipes = cls.get_available_recipes(recipe_category, current_user.user_id)
 
         if not available_recipes:
-            cls.console.print(f"\nYou did not add any {recipe_category} recipes to your cookbook yet.", style="error")
+            cls.console.print(f"\nYou did not add any {recipe_category} recipes to your cookbook yet", style="error")
             input("Press Enter to create a recipe...")
             cls.create_recipe(current_user)
 
@@ -225,10 +226,10 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
             cls.console.print(f"{number} {recipe['name']}", style="option")
 
     @classmethod
-    def view_recipe(cls, current_user):
+    def view_recipe(cls, current_user, recipe):
         cls.clear_console()
 
-        print(current_user.username)
+        print(recipe.name)
 
     @classmethod
     def create_recipe(cls, current_user):
@@ -241,16 +242,55 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         """
         cls.clear_console()
 
+        # let the user choose a category for the recipe
         cls.console.print("Please choose the category of your recipe", style="heading")
         recipe_category = cls.choose_category()
+
+        # let the user choose a name for the recipe
         recipe_name = cls.choose_name()
-        recipe_instructions = input("\nPlease enter the instructions for your recipe: \n")
+
+        # let the user enter instructions for the recipe
+        recipe_instructions = input("\nPlease enter the instructions for your recipe: \n").strip()
+
+        while not recipe_instructions:
+            cls.console.print("Please enter instructions", style="error")
+            recipe_instructions = input("\nPlease enter the instructions for your recipe: \n")
 
         cls.console.print("\nSaving recipe...", style="info")
 
+        # create a new Recipe instance and save recipe in worksheet
         new_recipe = Recipe(cls.increment_id("recipes"), recipe_category, recipe_name, recipe_instructions,
                             current_user.user_id)
         new_recipe.add_recipe_to_sheet()
+
+        # let the user enter ingredients for the recipe
+        cls.console.print("\nPlease enter the ingredients for your recipe", style="heading")
+        cls.console.print("\nEnter one ingredient at the time, you can enter more as long as you want to", style="info")
+        more = True
+        while more:
+            ingredient = input("\nIngredient: \n").strip()
+
+            while not ingredient:
+                cls.console.print("Please enter an ingredient", style="error")
+                ingredient = input("\nIngredient: \n").strip()
+
+            cls.console.print("\nSaving ingredient...", style="info")
+
+            # create a new Ingredient instance
+            new_ingredient = Ingredient(cls.increment_id("ingredients"), ingredient, new_recipe.recipe_id)
+            new_ingredient.add_ingredient_to_sheet()
+
+            while True:
+                enter_more = input("Do you want to add another ingredient? (y/n)").lower().strip()
+
+                if enter_more == "y":
+                    more = True
+                    break
+                elif enter_more == "n":
+                    more = False
+                    break
+                else:
+                    cls.console.print("Please enter either y or n", style="error")
 
         cls.view_recipe(current_user, new_recipe)
 
@@ -268,7 +308,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         # input category until valid selection was made
         while True:
             try:
-                category = input("\nCategory: \n")
+                category = input("\nCategory: \n").strip()
 
                 if category == "1":
                     category = "Vegetarian"
@@ -302,7 +342,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         # input name until valid selection was made
         while True:
             try:
-                recipe_name = input("\nName: \n")
+                recipe_name = input("\nName: \n").strip()
 
                 if len(recipe_name) < 3 or len(recipe_name) > 15:
                     raise ValueError("Name must be between 3 and 15 characters long")

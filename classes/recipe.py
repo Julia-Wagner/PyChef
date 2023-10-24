@@ -1,12 +1,10 @@
-from .mixins import ClearConsole, StyleConsole
 from .sheet import SheetService
 
 
-class Recipe(ClearConsole, StyleConsole, SheetService):
+class Recipe(SheetService):
     """"
     Class for recipe
     """
-    console = StyleConsole.style()
     recipes = SheetService.get_worksheet("recipes")
 
     def __init__(self, recipe_id, category, name, instructions, created_by_id):

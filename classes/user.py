@@ -1,13 +1,11 @@
 from getpass import getpass
-from .mixins import ClearConsole, StyleConsole
 from .sheet import SheetService
 
 
-class User(ClearConsole, StyleConsole, SheetService):
+class User(SheetService):
     """"
     Class for user
     """
-    console = StyleConsole.style()
     users = SheetService.get_worksheet("users")
 
     def __init__(self, user_id, username, password):
