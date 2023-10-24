@@ -1,11 +1,13 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from .mixins import StyleConsole
 
 
 class SheetService:
     """
     Class for Google Sheets functions
     """
+    console = StyleConsole.style()
 
     SCOPE = [
         "https://www.googleapis.com/auth/spreadsheets",
@@ -26,8 +28,19 @@ class SheetService:
         :param string sheet_name: the name of the worksheet
         :return: worksheet to work with
         """
-        worksheet = cls.SHEET.worksheet(sheet_name)
-        return worksheet
+        try:
+            worksheet = cls.SHEET.worksheet(sheet_name)
+            return worksheet
+
+        except gspread.exceptions.APIError as e:
+            cls.console.print("An error occurred connecting Google Sheets. Please restart the program", style="error")
+            input("Press Enter to restart...")
+            exit()
+
+        except Exception as e:
+            cls.console.print("An error occurred. Please restart the program", style="error")
+            input("Press Enter to restart...")
+            exit()
 
     @classmethod
     def increment_id(cls, sheet_name):
