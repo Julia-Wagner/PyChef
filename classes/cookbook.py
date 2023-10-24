@@ -84,12 +84,12 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         cls.clear_console()
 
         if new_account:
-            cls.console.print("\nAccount created successfully!\nYou can now log in", style="success")
+            cls.console.print("Account created successfully!\nYou can now log in\n", style="success")
 
         # input username until correct
         while True:
             try:
-                username = input("\nPlease enter your username: \n").strip()
+                username = input("Please enter your username: \n").strip()
 
                 if not cls.get_entry("users", username, 2):
                     raise ValueError("Username not found")
@@ -263,8 +263,10 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
                             current_user.user_id)
         new_recipe.add_recipe_to_sheet()
 
+        cls.clear_console()
+
         # let the user enter ingredients for the recipe
-        cls.console.print("\nPlease enter the ingredients for your recipe", style="heading")
+        cls.console.print("Please enter the ingredients for your recipe", style="heading")
         cls.console.print("\nEnter one ingredient at the time, you can enter more as long as you want to", style="info")
         more = True
         while more:
@@ -326,7 +328,8 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
                 cls.console.print("Please select either 1, 2 or 3", style="error")
                 continue
 
-        cls.console.print(f"\nRecipe category: [underline]{category}[underline]", style="success")
+        cls.clear_console()
+        cls.console.print(f"Recipe category: [underline]{category}[underline]", style="success")
         return category
 
     @classmethod
@@ -353,5 +356,6 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
             else:
                 break
 
-        cls.console.print(f"\nRecipe name: [underline]{recipe_name}[underline]", style="success")
+        cls.clear_console()
+        cls.console.print(f"Recipe name: [underline]{recipe_name}[underline]", style="success")
         return recipe_name
