@@ -37,3 +37,19 @@
 
 To visualize the necessary steps to create my cookbook, I created a flowchart using [Lucidchart](https://lucid.app/lucidchart/11478dde-0293-49ef-95b3-c7f9f842cd13/edit?viewport_loc=-61%2C227%2C2994%2C1412%2C0_0&invitationId=inv_b097e12e-4e66-440b-bf17-5d18fb3dd66d).
 ![Flow Chart](docs/screenshots/flowchart.png)
+
+## **Credits**
+
+### **Content**
+
+- I used [Python OOP series](https://www.youtube.com/watch?v=ZDa-Z5JzLYM&feature=youtu.be) by Corey Schafer for reference regarding object-oriented programing.
+- The [Code Institute Template](https://github.com/Code-Institute-Org/p3-template) was used for this project to have a fake terminal in the browser.
+- I used the walkthrough project from Code Institute as a reference on how to connect my project to Google Sheets.
+- The method to clear the console is from [DelftStack](https://www.delftstack.com/howto/python/python-clear-console/).
+
+### **Media and Design**
+
+- [Lucidchart](https://lucid.app/lucidchart/11478dde-0293-49ef-95b3-c7f9f842cd13/edit?viewport_loc=807%2C506%2C1664%2C785%2C0_0&invitationId=inv_b097e12e-4e66-440b-bf17-5d18fb3dd66d) was used to create the flowchart.
+- The background image was taken from [Unsplash.com](https://unsplash.com/de/fotos/%ED%85%8C%EC%9D%B4%EB%B8%94%EC%97%90-%EA%B3%BC%EC%9D%BC%EA%B3%BC-%EC%95%BC%EC%B1%84-sDbj1dFlFPU).
+- The image for the favicon was taken from [Pixabay](https://pixabay.com/de/vectors/sieden-k%C3%BCche-pfanne-topf-1300607/).
+- ASCII Art was taken from the [ASCII Art Archive](https://www.asciiart.eu/).
