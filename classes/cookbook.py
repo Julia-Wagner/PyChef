@@ -235,6 +235,18 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
     def view_recipe(cls, current_user, recipe):
         cls.clear_console()
         cls.console.print(f"{recipe.name}", style="center_heading", justify="center")
+        cls.console.print(f"\nSelected recipe: {recipe.name}", style="option")
+        cls.console.print(f"\nInstructions: {recipe.instructions}", style="option")
+
+        recipe_ingredients = cls.get_ingredients_for_recipes(recipe.recipe_id)
+
+        if recipe_ingredients:
+            cls.console.print("\nIngredients:", style="heading")
+            for ingredient in recipe_ingredients:
+                cls.console.print(f"- {ingredient['ingredient']}", style="option")
+
+        input("Press Enter to continue...\n")
+        cls.view_create_selection(current_user)
 
     @classmethod
     def create_recipe(cls, current_user):

@@ -92,6 +92,21 @@ class SheetService:
         return available_recipes
 
     @classmethod
+    def get_ingredients_for_recipes(cls, recipe_id):
+        """
+        Gets all ingredients for the given recipe.
+
+        :param int recipe_id: the id of the recipe
+        :return: False or available ingredients
+        """
+        all_ingredients = cls.get_worksheet("ingredients").get_all_records()
+        recipe_ingredients = [ingredient for ingredient in all_ingredients if ingredient['recipe_id'] == recipe_id]
+
+        if not recipe_ingredients:
+            return False
+        return recipe_ingredients
+
+    @classmethod
     def get_row_values(cls, sheet_name, row):
         """
         Gets the values of a specific row in the given worksheet.
