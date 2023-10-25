@@ -83,13 +83,24 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         """
         cls.clear_console()
 
+        cls.console.print("""
+  _                 _       
+ | |               (_)      
+ | |     ___   __ _ _ _ __  
+ | |    / _ \ / _` | | '_ \ 
+ | |___| (_) | (_| | | | | |
+ |______\___/ \__, |_|_| |_|
+               __/ |        
+              |___/         
+""", justify="center", style="green")
+
         if new_account:
-            cls.console.print("Account created successfully!\nYou can now log in\n", style="success")
+            cls.console.print("Account created successfully!\nYou can now log in", style="success")
 
         # input username until correct
         while True:
             try:
-                username = input("Please enter your username: \n").strip()
+                username = input("\nPlease enter your username:\n").strip()
 
                 if not cls.get_entry("users", username, 2):
                     raise ValueError("Username not found")
@@ -130,6 +141,18 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         Calls the next method in the program flow.
         """
         cls.clear_console()
+
+        cls.console.print("""
+   _____                _                                           _   
+  / ____|              | |           /\                            | |  
+ | |     _ __ ___  __ _| |_ ___     /  \   ___ ___ ___  _   _ _ __ | |_ 
+ | |    | '__/ _ \/ _` | __/ _ \   / /\ \ / __/ __/ _ \| | | | '_ \| __|
+ | |____| | |  __/ (_| | ||  __/  / ____ \ (_| (_| (_) | |_| | | | | |_ 
+  \_____|_|  \___|\__,_|\__\___| /_/    \_\___\___\___/ \__,_|_| |_|\__|
+                                                                        
+                                                                        
+""", justify="center", style="green")
+
         cls.console.print("Please enter a username", style="heading")
         cls.console.print("Username must be at least 4 characters long", style="info")
 
@@ -159,7 +182,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
                 password = input("\nPassword: \n").strip()
 
                 if len(password) < 6:
-                    raise ValueError("Password must be at least 4 characters long")
+                    raise ValueError("Password must be at least 6 characters long")
 
             except ValueError as e:
                 cls.console.print(f"{e}, please choose another password", style="error")
