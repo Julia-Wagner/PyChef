@@ -225,7 +225,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
             cls.create_recipe(current_user)
 
         cls.clear_console()
-        cls.console.print("View recipe", style="center_heading", justify="center")
+        cls.console.print("Select a recipe", style="center_heading", justify="center")
         cls.console.print(f"\nAvailable {recipe_category} recipes\n", style="heading")
 
         for number, recipe in enumerate(available_recipes, start=1):
@@ -234,8 +234,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
     @classmethod
     def view_recipe(cls, current_user, recipe):
         cls.clear_console()
-
-        print(recipe.name)
+        cls.console.print(f"{recipe.name}", style="center_heading", justify="center")
 
     @classmethod
     def create_recipe(cls, current_user):
@@ -271,6 +270,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         new_recipe.add_recipe_to_sheet()
 
         cls.clear_console()
+        cls.console.print("Create a new recipe", style="center_heading", justify="center")
 
         # let the user enter ingredients for the recipe
         cls.console.print("Please enter the ingredients for your recipe", style="heading")
