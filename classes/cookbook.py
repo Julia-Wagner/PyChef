@@ -39,7 +39,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
     ||/===================\|/===================\||
     `--------------------~___~-------------------''\n""", justify="center")
 
-        cls.console.print("Welcome to your digital cookbook!", style="bold white on green", justify="center")
+        cls.console.print("Welcome to your digital cookbook!", style="center_heading", justify="center")
 
         cls.account_selection()
 
@@ -82,20 +82,10 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         :param bool new_account: Show message if this is True, default is False
         """
         cls.clear_console()
-
-        cls.console.print("""
-  _                 _       
- | |               (_)      
- | |     ___   __ _ _ _ __  
- | |    / _ \ / _` | | '_ \ 
- | |___| (_) | (_| | | | | |
- |______\___/ \__, |_|_| |_|
-               __/ |        
-              |___/         
-""", justify="center", style="green")
+        cls.console.print("Login", style="center_heading", justify="center")
 
         if new_account:
-            cls.console.print("Account created successfully!\nYou can now log in", style="success")
+            cls.console.print("\nAccount created successfully!\nYou can now log in", style="success")
 
         # input username until correct
         while True:
@@ -141,19 +131,9 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         Calls the next method in the program flow.
         """
         cls.clear_console()
+        cls.console.print("Create Account", style="center_heading", justify="center")
 
-        cls.console.print("""
-   _____                _                                           _   
-  / ____|              | |           /\                            | |  
- | |     _ __ ___  __ _| |_ ___     /  \   ___ ___ ___  _   _ _ __ | |_ 
- | |    | '__/ _ \/ _` | __/ _ \   / /\ \ / __/ __/ _ \| | | | '_ \| __|
- | |____| | |  __/ (_| | ||  __/  / ____ \ (_| (_| (_) | |_| | | | | |_ 
-  \_____|_|  \___|\__,_|\__\___| /_/    \_\___\___\___/ \__,_|_| |_|\__|
-                                                                        
-                                                                        
-""", justify="center", style="green")
-
-        cls.console.print("Please enter a username", style="heading")
+        cls.console.print("\nPlease enter a username", style="heading")
         cls.console.print("Username must be at least 4 characters long", style="info")
 
         # input username until valid selection was made
@@ -205,6 +185,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         and calls the according method
         """
         cls.clear_console()
+
         cls.console.print("Do you want to view or create a recipe?\n", style="heading")
         cls.console.print("1 View recipe", style="option")
         cls.console.print("2 Create a new recipe", style="option")
@@ -229,8 +210,9 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
     @classmethod
     def select_recipe(cls, current_user):
         cls.clear_console()
+        cls.console.print("View recipe", style="center_heading", justify="center")
 
-        cls.console.print("What kind of recipe are you looking for?", style="heading")
+        cls.console.print("\nWhat kind of recipe are you looking for?", style="heading")
         recipe_category = cls.choose_category()
 
         cls.console.print("\nLooking for recipes...", style="info")
@@ -243,7 +225,8 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
             cls.create_recipe(current_user)
 
         cls.clear_console()
-        cls.console.print(f"Available {recipe_category} recipes\n", style="heading")
+        cls.console.print("View recipe", style="center_heading", justify="center")
+        cls.console.print(f"\nAvailable {recipe_category} recipes\n", style="heading")
 
         for number, recipe in enumerate(available_recipes, start=1):
             cls.console.print(f"{number} {recipe['name']}", style="option")
@@ -264,9 +247,10 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         :param User current_user: The user that is currently logged in
         """
         cls.clear_console()
+        cls.console.print("Create a new recipe", style="center_heading", justify="center")
 
         # let the user choose a category for the recipe
-        cls.console.print("Please choose the category of your recipe", style="heading")
+        cls.console.print("\nPlease choose the category of your recipe", style="heading")
         recipe_category = cls.choose_category()
 
         # let the user choose a name for the recipe
@@ -352,7 +336,9 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
                 continue
 
         cls.clear_console()
-        cls.console.print(f"Recipe category: [underline]{category}[underline]", style="success")
+        cls.console.print("Create a new recipe", style="center_heading", justify="center")
+        cls.console.print(f"\nRecipe category: [underline]{category}[underline]", style="success")
+
         return category
 
     @classmethod
@@ -380,5 +366,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
                 break
 
         cls.clear_console()
-        cls.console.print(f"Recipe name: [underline]{recipe_name}[underline]", style="success")
+        cls.console.print("Create a new recipe", style="center_heading", justify="center")
+        cls.console.print(f"\nRecipe name: [underline]{recipe_name}[underline]", style="success")
+
         return recipe_name

@@ -26,7 +26,8 @@ class StyleConsole:
             "heading": "bold underline",
             "option": "bold",
             "info": "dim",
-            "success": "bold green"
+            "success": "bold green",
+            "center_heading": "bold white on green"
         })
 
         return Console(theme=custom_theme)
