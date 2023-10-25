@@ -34,12 +34,12 @@ class SheetService:
 
         except gspread.exceptions.APIError as e:
             cls.console.print("An error occurred connecting Google Sheets. Please restart the program", style="error")
-            input("Press Enter to restart...")
+            input("Press Enter to restart...\n")
             exit()
 
         except Exception as e:
             cls.console.print("An error occurred. Please restart the program", style="error")
-            input("Press Enter to restart...")
+            input("Press Enter to restart...\n")
             exit()
 
     @classmethod

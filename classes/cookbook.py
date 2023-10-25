@@ -216,7 +216,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
 
         if not available_recipes:
             cls.console.print(f"\nYou did not add any {recipe_category} recipes to your cookbook yet", style="error")
-            input("Press Enter to create a recipe...")
+            input("Press Enter to create a recipe...\n")
             cls.create_recipe(current_user)
 
         cls.clear_console()
@@ -283,7 +283,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
             new_ingredient.add_ingredient_to_sheet()
 
             while True:
-                enter_more = input("Do you want to add another ingredient? (y/n)").lower().strip()
+                enter_more = input("Do you want to add another ingredient? (y/n)\n").lower().strip()
 
                 if enter_more == "y":
                     more = True
