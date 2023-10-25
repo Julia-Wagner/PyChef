@@ -4,11 +4,11 @@
 
     <script>
         var term = new Terminal({
-            cols: 80,
-            rows: 24
+            cols: 85,
+            rows: 30
         });
         term.open(document.getElementById('terminal'));
-        term.writeln('Running startup command: python3 run.py');
+        term.writeln('Opening cookbook...');
         term.writeln('');
 
         var ws = new WebSocket(location.protocol.replace('http', 'ws') + '//' + location.hostname + (location.port ? (
