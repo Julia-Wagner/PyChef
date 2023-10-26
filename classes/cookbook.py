@@ -245,7 +245,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
             for ingredient in recipe_ingredients:
                 cls.console.print(f"- {ingredient['ingredient']}", style="option")
 
-        input("Press Enter to continue...\n")
+        input("\nPress Enter to continue...\n")
         cls.view_create_selection(current_user)
 
     @classmethod
