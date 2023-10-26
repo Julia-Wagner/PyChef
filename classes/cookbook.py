@@ -228,8 +228,25 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         cls.console.print("Select a recipe", style="center_heading", justify="center")
         cls.console.print(f"\nAvailable {recipe_category} recipes\n", style="heading")
 
+        possible_selection = {}
         for number, recipe in enumerate(available_recipes, start=1):
+            possible_selection[str(number)] = recipe
             cls.console.print(f"{number} {recipe['name']}", style="option")
+
+        # show until correct selection is made
+        while True:
+            try:
+                selection = input("\nEnter the number of the recipe you want to view: \n").strip()
+
+                if possible_selection.get(selection) is None:
+                    raise ValueError
+                else:
+                    selected_recipe = Recipe.from_dictionary(possible_selection[selection])
+                    cls.view_recipe(current_user, selected_recipe)
+
+            except ValueError:
+                cls.console.print(f"Please select a number between {next(iter(possible_selection.keys()))} "
+                                  f"and {next(reversed(possible_selection.keys()))}", style="error")
 
     @classmethod
     def view_recipe(cls, current_user, recipe):
@@ -263,6 +280,9 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         # let the user choose a category for the recipe
         cls.console.print("\nPlease choose the category of your recipe", style="heading")
         recipe_category = cls.choose_category()
+
+        cls.console.print("Create a new recipe", style="center_heading", justify="center")
+        cls.console.print(f"\nRecipe category: [underline]{recipe_category}[underline]", style="success")
 
         # let the user choose a name for the recipe
         recipe_name = cls.choose_name()
@@ -348,8 +368,6 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
                 continue
 
         cls.clear_console()
-        cls.console.print("Create a new recipe", style="center_heading", justify="center")
-        cls.console.print(f"\nRecipe category: [underline]{category}[underline]", style="success")
 
         return category
 
