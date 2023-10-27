@@ -6,7 +6,6 @@ class User(SheetService):
     """"
     Class for user
     """
-    users = SheetService.get_worksheet("users")
 
     def __init__(self, user_id, username, password):
         self.user_id = user_id
@@ -18,7 +17,7 @@ class User(SheetService):
         Adds a new row with the data from the user to the worksheet.
         """
         new_account = [self.user_id, self.username, self.password]
-        self.users.append_row(new_account)
+        SheetService.add_entry_to_sheet("users", new_account)
 
     @staticmethod
     def get_user(values):

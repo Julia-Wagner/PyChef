@@ -119,3 +119,14 @@ class SheetService:
         if not row_values:
             return False
         return row_values
+
+    @classmethod
+    def add_entry_to_sheet(cls, sheet_name, entry):
+        """
+        Adds a new row with the given data to the given worksheet.
+
+        :param string sheet_name: the name of the worksheet
+        :param list entry: the entry to add
+        """
+        worksheet = cls.get_worksheet(sheet_name)
+        worksheet.append_row(entry)
