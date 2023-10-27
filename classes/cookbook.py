@@ -1,4 +1,4 @@
-from .mixins import ClearConsole, StyleConsole
+from .mixins import ClearConsole, StyleConsole, RestartProgram
 from .sheet import SheetService
 from .user import User
 from .recipe import Recipe
@@ -6,13 +6,11 @@ from .ingredient import Ingredient
 from getpass import getpass
 
 
-class Cookbook(ClearConsole, StyleConsole, SheetService):
+class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
     """
     Main Class to interact with the user and call other classes
     """
     console = StyleConsole.style()
-    users = SheetService.get_worksheet("users")
-    recipes = SheetService.get_worksheet("recipes")
 
     def __init__(self):
         self.clear_console()
@@ -44,6 +42,11 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         cls.account_selection()
 
     @classmethod
+    def exit_cookbook(cls):
+        input("Press Enter to restart...\n")
+        cls.show_welcome_message()
+
+    @classmethod
     def account_selection(cls):
         """
         Lets the user select whether they want to log in or create an account
@@ -58,12 +61,13 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
             try:
                 selection = input("\nEnter 1 or 2: \n").strip()
 
-                if selection == "1":
-                    print("login")
+                if selection == "exit":
+                    cls.exit_cookbook()
+                    break
+                elif selection == "1":
                     cls.login()
                     break
                 elif selection == "2":
-                    print("create")
                     cls.create_account()
                     break
                 else:
@@ -83,6 +87,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         """
         cls.clear_console()
         cls.console.print("Login", style="center_heading", justify="center")
+        cls.console.print("To exit the cookbook simply enter [underline]exit[underline]", style="info")
 
         if new_account:
             cls.console.print("\nAccount created successfully!\nYou can now log in", style="success")
@@ -91,6 +96,10 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         while True:
             try:
                 username = input("\nPlease enter your username:\n").strip()
+
+                if username == "exit":
+                    cls.exit_cookbook()
+                    break
 
                 if not cls.get_entry("users", username, 2):
                     raise ValueError("Username not found")
@@ -104,12 +113,16 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         user_row = cls.get_entry("users", username, 2).row
         row_values = cls.get_row_values("users", user_row)
 
+        cls.console.print("\nNote: for security reasons your password won´t be displayed while typing",
+                          style="info")
         # input password until correct
         while True:
             try:
-                cls.console.print("\nNote: for security reasons your password won´t be displayed while typing",
-                                  style="info")
                 password = getpass("Please enter your password: \n").strip()
+
+                if password == "exit":
+                    cls.exit_cookbook()
+                    break
 
                 if row_values[2] != password:
                     raise ValueError("Password incorrect")
@@ -132,6 +145,7 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         """
         cls.clear_console()
         cls.console.print("Create Account", style="center_heading", justify="center")
+        cls.console.print("To exit the cookbook simply enter [underline]exit[underline]", style="info")
 
         cls.console.print("\nPlease enter a username", style="heading")
         cls.console.print("Username must be at least 4 characters long", style="info")
@@ -140,6 +154,10 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         while True:
             try:
                 username = input("\nUsername: \n").strip()
+
+                if username == "exit":
+                    cls.exit_cookbook()
+                    break
 
                 if len(username) < 4:
                     raise ValueError("Username must be at least 4 characters long")
@@ -160,6 +178,10 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         while True:
             try:
                 password = input("\nPassword: \n").strip()
+
+                if password == "exit":
+                    cls.exit_cookbook()
+                    break
 
                 if len(password) < 6:
                     raise ValueError("Password must be at least 6 characters long")
@@ -276,23 +298,21 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
         """
         cls.clear_console()
         cls.console.print("Create a new recipe", style="center_heading", justify="center")
+        cls.console.print("To exit the cookbook simply enter [underline]exit[underline]", style="info")
 
         # let the user choose a category for the recipe
         cls.console.print("\nPlease choose the category of your recipe", style="heading")
         recipe_category = cls.choose_category()
 
         cls.console.print("Create a new recipe", style="center_heading", justify="center")
+        cls.console.print("To exit the cookbook simply enter [underline]exit[underline]", style="info")
         cls.console.print(f"\nRecipe category: [underline]{recipe_category}[underline]", style="success")
 
         # let the user choose a name for the recipe
         recipe_name = cls.choose_name()
 
         # let the user enter instructions for the recipe
-        recipe_instructions = input("\nPlease enter the instructions for your recipe: \n").strip()
-
-        while not recipe_instructions:
-            cls.console.print("Please enter instructions", style="error")
-            recipe_instructions = input("\nPlease enter the instructions for your recipe: \n")
+        recipe_instructions = cls.choose_instructions()
 
         cls.console.print("\nSaving recipe...", style="info")
 
@@ -303,13 +323,17 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
 
         cls.clear_console()
         cls.console.print("Create a new recipe", style="center_heading", justify="center")
+        cls.console.print("To exit the cookbook simply enter [underline]exit[underline]", style="info")
 
         # let the user enter ingredients for the recipe
-        cls.console.print("Please enter the ingredients for your recipe", style="heading")
+        cls.console.print("\nPlease enter the ingredients for your recipe", style="heading")
         cls.console.print("\nEnter one ingredient at the time, you can enter more as long as you want to", style="info")
         more = True
         while more:
             ingredient = input("\nIngredient: \n").strip()
+
+            if ingredient == "exit":
+                cls.exit_cookbook()
 
             while not ingredient:
                 cls.console.print("Please enter an ingredient", style="error")
@@ -324,7 +348,10 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
             while True:
                 enter_more = input("Do you want to add another ingredient? (y/n)\n").lower().strip()
 
-                if enter_more == "y":
+                if enter_more == "exit":
+                    cls.exit_cookbook()
+                    break
+                elif enter_more == "y":
                     more = True
                     break
                 elif enter_more == "n":
@@ -351,7 +378,10 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
             try:
                 category = input("\nCategory: \n").strip()
 
-                if category == "1":
+                if category == "exit":
+                    cls.exit_cookbook()
+                    break
+                elif category == "1":
                     category = "Vegetarian"
                     break
                 elif category == "2":
@@ -386,6 +416,10 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
             try:
                 recipe_name = input("\nName: \n").strip()
 
+                if recipe_name == "exit":
+                    cls.exit_cookbook()
+                    break
+
                 if len(recipe_name) < 3 or len(recipe_name) > 15:
                     raise ValueError("Name must be between 3 and 15 characters long")
 
@@ -397,6 +431,25 @@ class Cookbook(ClearConsole, StyleConsole, SheetService):
 
         cls.clear_console()
         cls.console.print("Create a new recipe", style="center_heading", justify="center")
+        cls.console.print("To exit the cookbook simply enter [underline]exit[underline]", style="info")
         cls.console.print(f"\nRecipe name: [underline]{recipe_name}[underline]", style="success")
 
         return recipe_name
+
+    @classmethod
+    def choose_instructions(cls):
+        """
+        Shows instructions input and checks if valid.
+
+        :return: selected instructions
+        """
+        recipe_instructions = input("\nPlease enter the instructions for your recipe: \n").strip()
+
+        if recipe_instructions == "exit":
+            cls.exit_cookbook()
+
+        while not recipe_instructions:
+            cls.console.print("Please enter instructions", style="error")
+            recipe_instructions = input("\nPlease enter the instructions for your recipe: \n")
+
+        return recipe_instructions
