@@ -1,6 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from .mixins import StyleConsole
+from .mixins import StyleConsole, RestartProgram
 
 
 class SheetService:
@@ -32,15 +32,15 @@ class SheetService:
             worksheet = cls.SHEET.worksheet(sheet_name)
             return worksheet
 
-        except gspread.exceptions.APIError as e:
+        except gspread.exceptions.APIError:
             cls.console.print("An error occurred connecting Google Sheets. Please restart the program", style="error")
             input("Press Enter to restart...\n")
-            exit()
+            RestartProgram.restart()
 
-        except Exception as e:
+        except Exception:
             cls.console.print("An error occurred. Please restart the program", style="error")
             input("Press Enter to restart...\n")
-            exit()
+            RestartProgram.restart()
 
     @classmethod
     def increment_id(cls, sheet_name):

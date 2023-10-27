@@ -1,4 +1,5 @@
 import os
+import sys
 from rich.console import Console
 from rich.theme import Theme
 
@@ -31,3 +32,13 @@ class StyleConsole:
         })
 
         return Console(theme=custom_theme)
+
+
+class RestartProgram:
+    @staticmethod
+    def restart():
+        """
+        Restart the program.
+        Code taken from https://bobbyhadz.com/blog/how-to-restart-python-script-from-within-itself
+        """
+        os.execv(sys.executable, ['python'] + sys.argv)
