@@ -5,6 +5,9 @@ from rich.theme import Theme
 
 
 class ClearConsole:
+    """
+    Mixin containing a method to easily clear the console.
+    """
     @staticmethod
     def clear_console():
         """
@@ -15,10 +18,13 @@ class ClearConsole:
 
 
 class StyleConsole:
+    """
+    Mixin containing a method that creates a custom theme for the rich package.
+    """
     @staticmethod
     def style():
         """
-        Creates a custom theme to use with the rich package
+        Creates a custom theme to use with the rich package.
 
         :return: Console with custom theme
         """
@@ -35,6 +41,10 @@ class StyleConsole:
 
 
 class RestartProgram:
+    """
+    Mixin containing a method to easily restart the program
+    in case of an error or if the user wants to exit.
+    """
     @staticmethod
     def restart():
         """
