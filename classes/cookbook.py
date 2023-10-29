@@ -298,7 +298,8 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         cls.clear_console()
         cls.console.print(f"{recipe.name}", style="center_heading",
                           justify="center")
-        cls.console.print(f"\nSelected recipe: {recipe.name}",
+        cls.console.print(f"\nSelected recipe: "
+                          f"[underline]{recipe.name}[underline]",
                           style="option")
         cls.console.print(f"\nInstructions: {recipe.instructions}",
                           style="option")
