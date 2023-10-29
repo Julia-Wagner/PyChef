@@ -63,6 +63,11 @@ Users can create recipes. In order to create a recipe they have to be logged in.
 
 ![Create Recipe](docs/screenshots/create_recipe.gif)
 
+### **View Recipe**
+To view a recipe the user first has to choose a category. After this all the available recipes for this category are shown and a recipe to view can be chosen.
+
+![View Recipe](docs/screenshots/view_recipe.gif)
+
 ## **Credits**
 
 ### **Content**
