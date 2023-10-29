@@ -1,9 +1,9 @@
+from getpass import getpass
 from .mixins import ClearConsole, StyleConsole, RestartProgram
 from .sheet import SheetService
 from .user import User
 from .recipe import Recipe
 from .ingredient import Ingredient
-from getpass import getpass
 
 
 class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
@@ -24,7 +24,8 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         """
         cls.clear_console()
 
-        cls.console.print("""  __________________   __________________
+        # using a raw string to avoid the W605 warning from Flake8
+        cls.console.print(r"""  __________________   __________________
     .-/| ---------------- \ / ---------------- |\-.
     |||| ---------------- ||| ---------------- ||||
     |||| ---- PyChef ---- ||| ---------------- ||||
@@ -35,9 +36,10 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
     |||| ---------------- ||| ---------------- ||||
     ||||_________________ ||| _________________||||
     ||/===================\|/===================\||
-    `--------------------~___~-------------------''\n""", justify="center")
+    `--------------------~___~-------------------''""", justify="center")
 
-        cls.console.print("Welcome to your digital cookbook!", style="center_heading", justify="center")
+        cls.console.print("\nWelcome to your digital cookbook!\n",
+                          style="center_heading", justify="center")
 
         cls.account_selection()
 
@@ -90,7 +92,8 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         cls.print_exit_info()
 
         if new_account:
-            cls.console.print("\nAccount created successfully!\nYou can now log in", style="success")
+            cls.console.print("\nAccount created successfully!\n"
+                              "You can now log in", style="success")
 
         # input username until correct
         while True:
@@ -105,7 +108,8 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                     raise ValueError("Username not found")
 
             except ValueError as e:
-                cls.console.print(f"{e}, please enter the correct username", style="error")
+                cls.console.print(f"{e}, please enter the correct username",
+                                  style="error")
                 continue
             else:
                 break
@@ -113,8 +117,8 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         user_row = cls.get_entry("users", username, 2).row
         row_values = cls.get_row_values("users", user_row)
 
-        cls.console.print("\nNote: for security reasons your password won´t be displayed while typing",
-                          style="info")
+        cls.console.print("\nNote: for security reasons your password "
+                          "won´t be displayed while typing", style="info")
         # input password until correct
         while True:
             try:
@@ -128,7 +132,8 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                     raise ValueError("Password incorrect")
 
             except ValueError as e:
-                cls.console.print(f"{e}, please enter your password", style="error")
+                cls.console.print(f"{e}, please enter your password",
+                                  style="error")
                 continue
             else:
                 break
@@ -139,16 +144,18 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
     @classmethod
     def create_account(cls):
         """
-        Shows username and password input and checks if they are valid,
-        creates a new User object and stores the data in the worksheet if they are.
+        Shows username and password input and checks if they are valid, creates
+        a new User object and stores the data in the worksheet if they are.
         Calls the next method in the program flow.
         """
         cls.clear_console()
-        cls.console.print("Create Account", style="center_heading", justify="center")
+        cls.console.print("Create Account", style="center_heading",
+                          justify="center")
         cls.print_exit_info()
 
         cls.console.print("\nPlease enter a username", style="heading")
-        cls.console.print("Username must be at least 4 characters long", style="info")
+        cls.console.print("Username must be at least 4 characters long",
+                          style="info")
 
         # input username until valid selection was made
         while True:
@@ -160,19 +167,22 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                     break
 
                 if len(username) < 4:
-                    raise ValueError("Username must be at least 4 characters long")
+                    raise ValueError("Username must be at least 4 "
+                                     "characters long")
 
                 if cls.get_entry("users", username, 2):
                     raise ValueError("Username is already taken")
 
             except ValueError as e:
-                cls.console.print(f"{e}, please choose another username", style="error")
+                cls.console.print(f"{e}, please choose another username",
+                                  style="error")
                 continue
             else:
                 break
 
         cls.console.print("\nPlease enter a password", style="heading")
-        cls.console.print("Password must be at least 6 characters long", style="info")
+        cls.console.print("Password must be at least 6 characters long",
+                          style="info")
 
         # input password until valid selection was made
         while True:
@@ -184,10 +194,12 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                     break
 
                 if len(password) < 6:
-                    raise ValueError("Password must be at least 6 characters long")
+                    raise ValueError("Password must be at least 6 "
+                                     "characters long")
 
             except ValueError as e:
-                cls.console.print(f"{e}, please choose another password", style="error")
+                cls.console.print(f"{e}, please choose another password",
+                                  style="error")
                 continue
             else:
                 break
@@ -208,7 +220,8 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         """
         cls.clear_console()
 
-        cls.console.print("Do you want to view or create a recipe?\n", style="heading")
+        cls.console.print("Do you want to view or create a recipe?\n",
+                          style="heading")
         cls.console.print("1 View recipe", style="option")
         cls.console.print("2 Create a new recipe", style="option")
 
@@ -232,57 +245,71 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
     @classmethod
     def select_recipe(cls, current_user):
         cls.clear_console()
-        cls.console.print("View recipe", style="center_heading", justify="center")
+        cls.console.print("View recipe", style="center_heading",
+                          justify="center")
 
-        cls.console.print("\nWhat kind of recipe are you looking for?", style="heading")
+        cls.console.print("\nWhat kind of recipe are you looking for?",
+                          style="heading")
         recipe_category = cls.choose_category()
 
         cls.console.print("\nLooking for recipes...", style="info")
 
-        available_recipes = cls.get_available_recipes(recipe_category, current_user.user_id)
+        available_recipes = cls.get_available_recipes(recipe_category,
+                                                      current_user.user_id)
 
         if not available_recipes:
-            cls.console.print(f"\nYou did not add any {recipe_category} recipes to your cookbook yet", style="error")
+            cls.console.print(f"\nYou did not add any {recipe_category} "
+                              "recipes to your cookbook yet", style="error")
             input("Press Enter to create a recipe...\n")
             cls.create_recipe(current_user)
 
         cls.clear_console()
-        cls.console.print("Select a recipe", style="center_heading", justify="center")
-        cls.console.print(f"\nAvailable {recipe_category} recipes\n", style="heading")
+        cls.console.print("Select a recipe", style="center_heading",
+                          justify="center")
+        cls.console.print(f"\nAvailable {recipe_category} recipes\n",
+                          style="heading")
 
-        possible_selection = {}
+        possible_numbers = {}
         for number, recipe in enumerate(available_recipes, start=1):
-            possible_selection[str(number)] = recipe
+            possible_numbers[str(number)] = recipe
             cls.console.print(f"{number} {recipe['name']}", style="option")
 
         # show until correct selection is made
         while True:
             try:
-                selection = input("\nEnter the number of the recipe you want to view: \n").strip()
+                selection = input("\nEnter the number of the recipe you "
+                                  "want to view: \n").strip()
 
-                if possible_selection.get(selection) is None:
+                if possible_numbers.get(selection) is None:
                     raise ValueError
                 else:
-                    selected_recipe = Recipe.from_dictionary(possible_selection[selection])
+                    selected_recipe = Recipe.from_dictionary(
+                        possible_numbers[selection])
                     cls.view_recipe(current_user, selected_recipe)
 
             except ValueError:
-                cls.console.print(f"Please select a number between {next(iter(possible_selection.keys()))} "
-                                  f"and {next(reversed(possible_selection.keys()))}", style="error")
+                cls.console.print(f"Please select a number between "
+                                  f"{next(iter(possible_numbers.keys()))} and "
+                                  f"{next(reversed(possible_numbers.keys()))}",
+                                  style="error")
 
     @classmethod
     def view_recipe(cls, current_user, recipe):
         cls.clear_console()
-        cls.console.print(f"{recipe.name}", style="center_heading", justify="center")
-        cls.console.print(f"\nSelected recipe: {recipe.name}", style="option")
-        cls.console.print(f"\nInstructions: {recipe.instructions}", style="option")
+        cls.console.print(f"{recipe.name}", style="center_heading",
+                          justify="center")
+        cls.console.print(f"\nSelected recipe: {recipe.name}",
+                          style="option")
+        cls.console.print(f"\nInstructions: {recipe.instructions}",
+                          style="option")
 
         recipe_ingredients = cls.get_ingredients_for_recipes(recipe.recipe_id)
 
         if recipe_ingredients:
             cls.console.print("\nIngredients:", style="heading")
             for ingredient in recipe_ingredients:
-                cls.console.print(f"- {ingredient['ingredient']}", style="option")
+                cls.console.print(f"- {ingredient['ingredient']}",
+                                  style="option")
 
         input("\nPress Enter to continue...\n")
         cls.view_create_selection(current_user)
@@ -291,22 +318,28 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
     def create_recipe(cls, current_user):
         """
         Calls according methods to show category, name and instructions input
-        and checks if they are valid, creates a new Recipe object and stores the data in the worksheet if they are.
+        and checks if they are valid, creates a new Recipe object
+        and stores the data in the worksheet if they are.
         Calls the next method in the program flow.
 
         :param User current_user: The user that is currently logged in
         """
         cls.clear_console()
-        cls.console.print("Create a new recipe", style="center_heading", justify="center")
+        cls.console.print("Create a new recipe", style="center_heading",
+                          justify="center")
         cls.print_exit_info()
 
         # let the user choose a category for the recipe
-        cls.console.print("\nPlease choose the category of your recipe", style="heading")
+        cls.console.print("\nPlease choose the category of your recipe",
+                          style="heading")
         recipe_category = cls.choose_category()
 
-        cls.console.print("Create a new recipe", style="center_heading", justify="center")
+        cls.console.print("Create a new recipe", style="center_heading",
+                          justify="center")
         cls.print_exit_info()
-        cls.console.print(f"\nRecipe category: [underline]{recipe_category}[underline]", style="success")
+        cls.console.print(f"\nRecipe category: "
+                          f"[underline]{recipe_category}[underline]",
+                          style="success")
 
         # let the user choose a name for the recipe
         recipe_name = cls.choose_name()
@@ -317,17 +350,22 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         cls.console.print("\nSaving recipe...", style="info")
 
         # create a new Recipe instance and save recipe in worksheet
-        new_recipe = Recipe(cls.increment_id("recipes"), recipe_category, recipe_name, recipe_instructions,
-                            current_user.user_id)
+        new_recipe = Recipe(cls.increment_id("recipes"),
+                            recipe_category, recipe_name,
+                            recipe_instructions, current_user.user_id)
         new_recipe.add_recipe_to_sheet()
 
         cls.clear_console()
-        cls.console.print("Create a new recipe", style="center_heading", justify="center")
+        cls.console.print("Create a new recipe", style="center_heading",
+                          justify="center")
         cls.print_exit_info()
 
         # let the user enter ingredients for the recipe
-        cls.console.print("\nPlease enter the ingredients for your recipe", style="heading")
-        cls.console.print("\nEnter one ingredient at the time, you can enter more as long as you want to", style="info")
+        cls.console.print("\nPlease enter the ingredients for your recipe",
+                          style="heading")
+        cls.console.print("\nEnter one ingredient at the time, "
+                          "you can enter more as long as you want to",
+                          style="info")
         more = True
         while more:
             ingredient = input("\nIngredient: \n").strip()
@@ -342,11 +380,13 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
             cls.console.print("\nSaving ingredient...", style="info")
 
             # create a new Ingredient instance
-            new_ingredient = Ingredient(cls.increment_id("ingredients"), ingredient, new_recipe.recipe_id)
+            new_ingredient = Ingredient(cls.increment_id("ingredients"),
+                                        ingredient, new_recipe.recipe_id)
             new_ingredient.add_ingredient_to_sheet()
 
             while True:
-                enter_more = input("Do you want to add another ingredient? (y/n)\n").lower().strip()
+                enter_more = input("Do you want to add another ingredient? "
+                                   "(y/n)\n").lower().strip()
 
                 if enter_more == "exit":
                     cls.exit_cookbook()
@@ -358,7 +398,8 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                     more = False
                     break
                 else:
-                    cls.console.print("Please enter either y or n", style="error")
+                    cls.console.print("Please enter either y or n",
+                                      style="error")
 
         cls.view_recipe(current_user, new_recipe)
 
@@ -394,7 +435,8 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                     raise ValueError
 
             except ValueError:
-                cls.console.print("Please select either 1, 2 or 3", style="error")
+                cls.console.print("Please select either 1, 2 or 3",
+                                  style="error")
                 continue
 
         cls.clear_console()
@@ -408,8 +450,10 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
 
         :return: selected name
         """
-        cls.console.print("\nPlease enter a name for your recipe", style="heading")
-        cls.console.print("Name must be between 3 and 15 characters long", style="info")
+        cls.console.print("\nPlease enter a name for your recipe",
+                          style="heading")
+        cls.console.print("Name must be between 3 and 15 characters long",
+                          style="info")
 
         # input name until valid selection was made
         while True:
@@ -421,18 +465,23 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                     break
 
                 if len(recipe_name) < 3 or len(recipe_name) > 15:
-                    raise ValueError("Name must be between 3 and 15 characters long")
+                    raise ValueError("Name must be between 3 and 15 "
+                                     "characters long")
 
             except ValueError as e:
-                cls.console.print(f"{e}, please choose a valid name", style="error")
+                cls.console.print(f"{e}, please choose a valid name",
+                                  style="error")
                 continue
             else:
                 break
 
         cls.clear_console()
-        cls.console.print("Create a new recipe", style="center_heading", justify="center")
+        cls.console.print("Create a new recipe", style="center_heading",
+                          justify="center")
         cls.print_exit_info()
-        cls.console.print(f"\nRecipe name: [underline]{recipe_name}[underline]", style="success")
+        cls.console.print(f"\nRecipe name: "
+                          f"[underline]{recipe_name}[underline]",
+                          style="success")
 
         return recipe_name
 
@@ -443,17 +492,20 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
 
         :return: selected instructions
         """
-        recipe_instructions = input("\nPlease enter the instructions for your recipe: \n").strip()
+        recipe_instructions = input("\nPlease enter the instructions "
+                                    "for your recipe: \n").strip()
 
         if recipe_instructions == "exit":
             cls.exit_cookbook()
 
         while not recipe_instructions:
             cls.console.print("Please enter instructions", style="error")
-            recipe_instructions = input("\nPlease enter the instructions for your recipe: \n")
+            recipe_instructions = input("\nPlease enter the instructions "
+                                        "for your recipe: \n")
 
         return recipe_instructions
 
     @classmethod
     def print_exit_info(cls):
-        cls.console.print("To exit the cookbook simply enter [underline]exit[underline]", style="info")
+        cls.console.print("To exit the cookbook simply enter "
+                          "[underline]exit[underline]", style="info")

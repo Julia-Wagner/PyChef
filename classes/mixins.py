@@ -12,7 +12,8 @@ class ClearConsole:
     def clear_console():
         """
         Clears the console.
-        Code taken from https://www.delftstack.com/howto/python/python-clear-console/
+        Code taken from:
+        https://www.delftstack.com/howto/python/python-clear-console/
         """
         return os.system("cls" if os.name in ("nt", "dos") else "clear")
 
@@ -49,6 +50,7 @@ class RestartProgram:
     def restart():
         """
         Restart the program.
-        Code taken from https://bobbyhadz.com/blog/how-to-restart-python-script-from-within-itself
+        Code taken from:
+        https://bobbyhadz.com/blog/how-to-restart-python-script-from-within-itself
         """
         os.execv(sys.executable, ['python'] + sys.argv)

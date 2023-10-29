@@ -33,12 +33,14 @@ class SheetService:
             return worksheet
 
         except gspread.exceptions.APIError:
-            cls.console.print("An error occurred connecting Google Sheets. Please restart the program", style="error")
+            cls.console.print("An error occurred connecting Google Sheets. "
+                              "Please restart the program", style="error")
             input("Press Enter to restart...\n")
             RestartProgram.restart()
 
         except Exception:
-            cls.console.print("An error occurred. Please restart the program", style="error")
+            cls.console.print("An error occurred. Please restart the program",
+                              style="error")
             input("Press Enter to restart...\n")
             RestartProgram.restart()
 
@@ -61,7 +63,8 @@ class SheetService:
     @classmethod
     def get_entry(cls, sheet_name, value, column):
         """
-        Checks if the given value exists in the given column of a specific worksheet.
+        Checks if the given value exists in the given column
+        of a specific worksheet.
         If yes the cell is returned.
 
         :param string sheet_name: the name of the worksheet
@@ -77,15 +80,17 @@ class SheetService:
     @classmethod
     def get_available_recipes(cls, category, user_id):
         """
-        Gets all recipes with the given category that where created by the given user.
+        Gets all recipes with the given category
+        that where created by the given user.
 
         :param string category: the category of the recipe to look for
-        :param int user_id: the id of the user that is trying to get the recipes
+        :param int user_id: the id of the user trying to get the recipes
         :return: False or available recipes
         """
         all_recipes = cls.get_worksheet("recipes").get_all_records()
         available_recipes = [recipe for recipe in all_recipes
-                             if recipe['category'] == category and recipe['created_by_id'] == user_id]
+                             if recipe['category'] == category and
+                             recipe['created_by_id'] == user_id]
 
         if not available_recipes:
             return False
@@ -100,7 +105,8 @@ class SheetService:
         :return: False or available ingredients
         """
         all_ingredients = cls.get_worksheet("ingredients").get_all_records()
-        recipe_ingredients = [ingredient for ingredient in all_ingredients if ingredient['recipe_id'] == recipe_id]
+        recipe_ingredients = [ingredient for ingredient in all_ingredients
+                              if ingredient['recipe_id'] == recipe_id]
 
         if not recipe_ingredients:
             return False

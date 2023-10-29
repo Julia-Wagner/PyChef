@@ -18,15 +18,17 @@ class Recipe(SheetService):
         """
         Alternative constructor to create a recipe from a dictionary.
 
-        :param dictionary: the dictionary that contains the values for the recipe
+        :param dictionary: the dictionary that contains the values
         :return: the created Recipe instance
         """
-        recipe_id, category, name, instructions, created_by_id = list(dictionary.values())
+        recipe_id, category, name, instructions, created_by_id = (
+            list(dictionary.values()))
         return cls(recipe_id, category, name, instructions, created_by_id)
 
     def add_recipe_to_sheet(self):
         """
         Adds a new row with the data from the recipe to the worksheet.
         """
-        new_recipe = [self.recipe_id, self.category, self.name, self.instructions, self.created_by_id]
+        new_recipe = [self.recipe_id, self.category, self.name,
+                      self.instructions, self.created_by_id]
         SheetService.add_entry_to_sheet("recipes", new_recipe)
