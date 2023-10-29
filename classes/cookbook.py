@@ -87,7 +87,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         """
         cls.clear_console()
         cls.console.print("Login", style="center_heading", justify="center")
-        cls.console.print("To exit the cookbook simply enter [underline]exit[underline]", style="info")
+        cls.print_exit_info()
 
         if new_account:
             cls.console.print("\nAccount created successfully!\nYou can now log in", style="success")
@@ -145,7 +145,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         """
         cls.clear_console()
         cls.console.print("Create Account", style="center_heading", justify="center")
-        cls.console.print("To exit the cookbook simply enter [underline]exit[underline]", style="info")
+        cls.print_exit_info()
 
         cls.console.print("\nPlease enter a username", style="heading")
         cls.console.print("Username must be at least 4 characters long", style="info")
@@ -298,14 +298,14 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         """
         cls.clear_console()
         cls.console.print("Create a new recipe", style="center_heading", justify="center")
-        cls.console.print("To exit the cookbook simply enter [underline]exit[underline]", style="info")
+        cls.print_exit_info()
 
         # let the user choose a category for the recipe
         cls.console.print("\nPlease choose the category of your recipe", style="heading")
         recipe_category = cls.choose_category()
 
         cls.console.print("Create a new recipe", style="center_heading", justify="center")
-        cls.console.print("To exit the cookbook simply enter [underline]exit[underline]", style="info")
+        cls.print_exit_info()
         cls.console.print(f"\nRecipe category: [underline]{recipe_category}[underline]", style="success")
 
         # let the user choose a name for the recipe
@@ -323,7 +323,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
 
         cls.clear_console()
         cls.console.print("Create a new recipe", style="center_heading", justify="center")
-        cls.console.print("To exit the cookbook simply enter [underline]exit[underline]", style="info")
+        cls.print_exit_info()
 
         # let the user enter ingredients for the recipe
         cls.console.print("\nPlease enter the ingredients for your recipe", style="heading")
@@ -431,7 +431,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
 
         cls.clear_console()
         cls.console.print("Create a new recipe", style="center_heading", justify="center")
-        cls.console.print("To exit the cookbook simply enter [underline]exit[underline]", style="info")
+        cls.print_exit_info()
         cls.console.print(f"\nRecipe name: [underline]{recipe_name}[underline]", style="success")
 
         return recipe_name
@@ -453,3 +453,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
             recipe_instructions = input("\nPlease enter the instructions for your recipe: \n")
 
         return recipe_instructions
+
+    @classmethod
+    def print_exit_info(cls):
+        cls.console.print("To exit the cookbook simply enter [underline]exit[underline]", style="info")
