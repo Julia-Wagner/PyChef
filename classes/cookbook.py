@@ -452,7 +452,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         """
         cls.console.print("\nPlease enter a name for your recipe",
                           style="heading")
-        cls.console.print("Name must be between 3 and 15 characters long",
+        cls.console.print("Name must be between 3 and 35 characters long",
                           style="info")
 
         # input name until valid selection was made
@@ -464,8 +464,8 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                     cls.exit_cookbook()
                     break
 
-                if len(recipe_name) < 3 or len(recipe_name) > 15:
-                    raise ValueError("Name must be between 3 and 15 "
+                if len(recipe_name) < 3 or len(recipe_name) > 35:
+                    raise ValueError("Name must be between 3 and 35 "
                                      "characters long")
 
             except ValueError as e:
