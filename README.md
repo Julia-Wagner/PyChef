@@ -45,6 +45,7 @@ To visualize the necessary steps to create my cookbook, I created a flowchart us
 On the welcome screen ASCII Art with a book and the name of the application is displayed. Underneath the welcome message, the user can decide whether they want to log in or create a new account.
 
 ![Welcome Screen](docs/screenshots/welcome_screen.gif)
+
 (Note: my screen recorder for some reason changes the color of the ASCII Art, it is all white in the application.)
 
 ### **Create Account**
