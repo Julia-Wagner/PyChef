@@ -10,11 +10,11 @@
 
 ### **User Stories**
 
-- As a user, I want to create an account and login.
+- As a user, I want to create an account and log in.
 - As a user, I want to create a digital cookbook with my recipes.
 - As a user, I want to save my recipes in different categories.
 - As a user, I want to look up my recipes after saving them.
-- As a user, I want to clearly see the ingredients and instructions to each recipe.
+- As a user, I want to clearly see the ingredients and instructions for each recipe.
 - As a user, I want to get clear feedback from the application.
 
 - As the site owner, I want to ensure the users have a good experience using the digital cookbook.
@@ -23,7 +23,7 @@
 
 ### **Features to achieve the goals**
 
-- Users can create an account with a username and password and login to their account.
+- Users can create an account with a username and password and log in to their account.
 - The application represents a digital cookbook where each user can save multiple recipes.
 - Each recipe has to be assigned to a category.
 - Users can search for recipes after logging in.
@@ -42,9 +42,9 @@ To visualize the necessary steps to create my cookbook, I created a flowchart us
 ## **Features**
 
 ### **Welcome Screen**
-On the welcome screen ASCII Art with a book and the name of the application is displayed. Underneath the welcome message, the user can decide whether they want to log in or create a new account.
+On the welcome screen, ASCII Art with a book and the name of the application is displayed. Underneath the welcome message, the user can decide whether they want to log in or create a new account.
 
-![Welcome Screen](docs/screenshots/welcome_screen.gif)
+![Welcome Screen](docs/screenshots/welcome_screen.png)
 
 (Note: my screen recorder for some reason changes the color of the ASCII Art, it is all white in the application.)
 
@@ -58,11 +58,16 @@ A user that already created an account can log in by entering their username and
 
 ![Login](docs/screenshots/login.gif)
 
+### **Create Recipe**
+Users can create recipes. In order to create a recipe they have to be logged in. For each recipe, a category has to be chosen. Then a recipe name and instructions for the recipe have to be entered. There has to be at least one ingredient, but it is possible to add as many ingredients as the user wants to.
+
+![Create Recipe](docs/screenshots/create_recipe.gif)
+
 ## **Credits**
 
 ### **Content**
 
-- I used [Python OOP series](https://www.youtube.com/watch?v=ZDa-Z5JzLYM&feature=youtu.be) by Corey Schafer for reference regarding object-oriented programing.
+- I used the [Python OOP series](https://www.youtube.com/watch?v=ZDa-Z5JzLYM&feature=youtu.be) by Corey Schafer for reference regarding object-oriented programming.
 - The [Code Institute Template](https://github.com/Code-Institute-Org/p3-template) was used for this project to have a fake terminal in the browser.
 - I used the walkthrough project from Code Institute as a reference on how to connect my project to Google Sheets.
 - The method to clear the console is from [DelftStack](https://www.delftstack.com/howto/python/python-clear-console/).
