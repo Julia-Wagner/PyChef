@@ -36,14 +36,26 @@
 ### **Flowchart**
 
 To visualize the necessary steps to create my cookbook, I created a flowchart using [Lucidchart](https://lucid.app/lucidchart/11478dde-0293-49ef-95b3-c7f9f842cd13/edit?viewport_loc=-61%2C227%2C2994%2C1412%2C0_0&invitationId=inv_b097e12e-4e66-440b-bf17-5d18fb3dd66d).
+
 ![Flow Chart](docs/screenshots/flowchart.png)
 
 ## **Features**
 
 ### **Welcome Screen**
 On the welcome screen ASCII Art with a book and the name of the application is displayed. Underneath the welcome message, the user can decide whether they want to log in or create a new account.
+
 ![Welcome Screen](docs/screenshots/welcome_screen.gif)
 (Note: my screen recorder for some reason changes the color of the ASCII Art, it is all white in the application.)
+
+### **Create Account**
+Users have to create an account in order to be able to store and view their personal recipes. A username and password have to be entered. After validation, they are stored in a *Google Sheets* worksheet.
+
+![Create Account](docs/screenshots/create_account.gif)
+
+### **Login**
+A user that already created an account can log in by entering their username and password.
+
+![Login](docs/screenshots/login.gif)
 
 ## **Credits**
 
