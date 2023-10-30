@@ -1,5 +1,15 @@
 # **PyChef**
 
+[Link to live project](https://pychef-6ee49d35b68f.herokuapp.com/)
+
+**PyChef** is a digital cookbook developed as a terminal application. To test the application use the following user data to log in:
+- username: *Test*
+- password: *123456*
+
+The test user already contains recipes to view for each category. Of course, you can also create a new user and add your own recipes.
+
+![Recipe Screenshot](docs/screenshots/recipe.png)
+
 ## **Planning**
 
 ### **Target Audience**
@@ -30,7 +40,7 @@
 - Each recipe is presented in a nice layout showing the according ingredients and instructions.
 - User errors are handled accordingly and clear feedback will be given to the user.
 
-- The ensure a good user experience there will be a well-planned layout, as well as clear feedback to the users.
+- To ensure a good user experience there will be a well-planned layout, as well as clear feedback to the users.
 - Only recipes that belong to the logged-in user are shown for them.
 
 ### **Flowchart**
@@ -74,7 +84,7 @@ Users can create recipes. In order to create a recipe they have to be logged in.
 ![Create Recipe](docs/screenshots/create_recipe.gif)
 
 ### **View Recipe**
-To view a recipe the user first has to choose a category. After this all the available recipes for this category are shown and a recipe to view can be chosen.
+To view a recipe the user first has to choose a category. After this, all the available recipes for this category are shown and a recipe to view can be chosen.
 
 ![View Recipe](docs/screenshots/view_recipe.gif)
 
@@ -94,7 +104,7 @@ A recipe can also be deleted by the user who created it.
 
 ### **Media and Design**
 
-- [Lucidchart](https://lucid.app/lucidchart/11478dde-0293-49ef-95b3-c7f9f842cd13/edit?viewport_loc=807%2C506%2C1664%2C785%2C0_0&invitationId=inv_b097e12e-4e66-440b-bf17-5d18fb3dd66d) was used to create the flowchart.
+- [Lucidchart](https://lucid.app/lucidchart/11478dde-0293-49ef-95b3-c7f9f842cd13/edit?viewport_loc=807%2C506%2C1664%2C785%2C0_0&invitationId=inv_b097e12e-4e66-440b-bf17-5d18fb3dd66d) was used to create the flowcharts.
 - The background image was taken from [Pexels](https://www.pexels.com/photo/assorted-vegetables-on-brown-wooden-table-1414651/).
 - The image for the favicon was taken from [Pixabay](https://pixabay.com/de/vectors/sieden-k%C3%BCche-pfanne-topf-1300607/).
 - ASCII Art was taken and adapted from the [ASCII Art Archive](https://www.asciiart.eu/books/books).
