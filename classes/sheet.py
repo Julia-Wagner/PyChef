@@ -113,6 +113,19 @@ class SheetService:
         return recipe_ingredients
 
     @classmethod
+    def get_row(cls, sheet_name, column, entry):
+        """
+        Gets the row number for the given entry
+        
+        :param sheet_name:
+        :param column:
+        :param entry:
+        :return:
+        """
+        row = cls.get_entry(sheet_name, entry, column).row
+        return row
+
+    @classmethod
     def get_row_values(cls, sheet_name, row):
         """
         Gets the values of a specific row in the given worksheet.
@@ -136,3 +149,14 @@ class SheetService:
         """
         worksheet = cls.get_worksheet(sheet_name)
         worksheet.append_row(entry)
+
+    @classmethod
+    def delete_entry(cls, sheet_name, row):
+        """
+        Delete the entry of the given row.
+
+        :param string sheet_name: the name of the worksheet
+        :param int row: the row to delete
+        """
+        worksheet = cls.get_worksheet(sheet_name)
+        worksheet.delete_row(row)
