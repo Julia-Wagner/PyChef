@@ -114,7 +114,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
             else:
                 break
 
-        user_row = cls.get_entry("users", username, 2).row
+        user_row = cls.get_row("users", 2, username)
         row_values = cls.get_row_values("users", user_row)
 
         cls.console.print("\nNote: for security reasons your password "
@@ -299,7 +299,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         cls.console.print(f"{recipe.name}", style="center_heading",
                           justify="center")
         cls.console.print(f"\nSelected recipe: "
-                          f"[underline]{recipe.name}[underline]",
+                          f"[underline]{recipe.name}[/underline]",
                           style="option")
         cls.console.print(f"\nInstructions: {recipe.instructions}",
                           style="option")
@@ -312,7 +312,34 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                 cls.console.print(f"- {ingredient['ingredient']}",
                                   style="option")
 
-        input("\nPress Enter to continue...\n")
+        cls.console.print("\nPlease enter [reverse]c[/reverse] to "
+                          "continue or [reverse]delete[/reverse]"
+                          " to delete this recipe", style="info")
+        # input until valid selection was made
+        while True:
+            try:
+                next_step = (input("Do you want to continue or delete?\n")
+                             .strip())
+
+                if next_step == "c":
+                    cls.view_create_selection(current_user)
+                    break
+                elif next_step == "delete":
+                    if recipe_ingredients:
+                        for ingredient in recipe_ingredients:
+                            ingredient_instance = Ingredient.from_dictionary(
+                                ingredient)
+                            ingredient_instance.delete_ingredient()
+                    recipe.delete_recipe()
+                    break
+                else:
+                    raise ValueError
+
+            except ValueError:
+                cls.console.print("Please enter either 'c' or 'delete'",
+                                  style="error")
+                continue
+
         cls.view_create_selection(current_user)
 
     @classmethod
@@ -339,7 +366,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                           justify="center")
         cls.print_exit_info()
         cls.console.print(f"\nRecipe category: "
-                          f"[underline]{recipe_category}[underline]",
+                          f"[underline]{recipe_category}[/underline]",
                           style="success")
 
         # let the user choose a name for the recipe
@@ -481,7 +508,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                           justify="center")
         cls.print_exit_info()
         cls.console.print(f"\nRecipe name: "
-                          f"[underline]{recipe_name}[underline]",
+                          f"[underline]{recipe_name}[/underline]",
                           style="success")
 
         return recipe_name
@@ -509,4 +536,4 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
     @classmethod
     def print_exit_info(cls):
         cls.console.print("To exit the cookbook simply enter "
-                          "[underline]exit[underline]", style="info")
+                          "[underline]exit[/underline]", style="info")
