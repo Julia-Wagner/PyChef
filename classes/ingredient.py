@@ -31,7 +31,7 @@ class Ingredient(SheetService):
 
     def delete_ingredient(self):
         """
-        Get the worksheet row where the ingredient is saved and delete it.
+        Gets the worksheet row where the ingredient is saved and deletes it.
         """
         self.console.print("\nDeleting ingredient...", style="info")
         ingredient_row = self.get_row("ingredients", 1, str(self.ingredient_id))

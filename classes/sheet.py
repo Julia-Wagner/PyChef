@@ -153,7 +153,7 @@ class SheetService:
     @classmethod
     def delete_entry(cls, sheet_name, row):
         """
-        Delete the entry of the given row.
+        Deletes the entry of the given row.
 
         :param string sheet_name: the name of the worksheet
         :param int row: the row to delete

@@ -35,7 +35,7 @@ class Recipe(SheetService):
 
     def delete_recipe(self):
         """
-        Get the worksheet row where the recipe is saved and delete it.
+        Gets the worksheet row where the recipe is saved and deletes it.
         """
         self.console.print("\nDeleting recipe...", style="info")
         recipe_row = self.get_row("recipes", 1, str(self.recipe_id))

@@ -45,6 +45,10 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
 
     @classmethod
     def exit_cookbook(cls):
+        """
+        Shows the input to exit the cookbook
+        and calls the method to show the welcome screen.
+        """
         input("Press Enter to restart...\n")
         cls.show_welcome_message()
 
@@ -52,7 +56,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
     def account_selection(cls):
         """
         Lets the user select whether they want to log in or create an account
-        and calls the according method
+        and calls the according method.
         """
         cls.console.print("\nSelect an option\n", style="heading")
         cls.console.print("1 Log in to your account", style="option")
@@ -85,7 +89,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         creates a new User object if they are.
         Calls the next method in the program flow.
 
-        :param bool new_account: Show message if this is True, default is False
+        :param bool new_account: show message True, default is False
         """
         cls.clear_console()
         cls.console.print("Login", style="center_heading", justify="center")
@@ -215,8 +219,10 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
     @classmethod
     def view_create_selection(cls, current_user):
         """
-        Let the user select whether they want to view or create a recipe
-        and calls the according method
+        Lets the user select whether they want to view or create a recipe
+        and calls the according method.
+
+        :param User current_user: the user that is currently logged in
         """
         cls.clear_console()
 
@@ -244,6 +250,13 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
 
     @classmethod
     def select_recipe(cls, current_user):
+        """
+        Calls the method for the category selection to view a recipe.
+        Shows available recipes for the selected category,
+        handles the selection of a recipe and calls the method to view it.
+
+        :param User current_user: the user that is currently logged in
+        """
         cls.clear_console()
         cls.console.print("View recipe", style="center_heading",
                           justify="center")
@@ -295,6 +308,14 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
 
     @classmethod
     def view_recipe(cls, current_user, recipe):
+        """
+        Shows all added details for the given recipe.
+        Lets the user decide if they want to continue or delete the recipe,
+        handles deletion and calls the according method to continue.
+
+        :param User current_user: the user that is currently logged in
+        :param Recipe recipe: the recipe to view
+        """
         cls.clear_console()
         cls.console.print(f"{recipe.name}", style="center_heading",
                           justify="center")
@@ -350,7 +371,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         and stores the data in the worksheet if they are.
         Calls the next method in the program flow.
 
-        :param User current_user: The user that is currently logged in
+        :param User current_user: the user that is currently logged in
         """
         cls.clear_console()
         cls.console.print("Create a new recipe", style="center_heading",
@@ -535,5 +556,8 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
 
     @classmethod
     def print_exit_info(cls):
+        """
+        Prints the information 'To exit the cookbook simply enter exit'
+        """
         cls.console.print("To exit the cookbook simply enter "
                           "[underline]exit[/underline]", style="info")

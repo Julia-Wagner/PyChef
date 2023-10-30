@@ -49,7 +49,7 @@ class RestartProgram:
     @staticmethod
     def restart():
         """
-        Restart the program.
+        Restarts the program.
         Code taken from:
         https://bobbyhadz.com/blog/how-to-restart-python-script-from-within-itself
         """
