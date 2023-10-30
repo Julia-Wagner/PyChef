@@ -11,6 +11,17 @@ class Ingredient(SheetService):
         self.ingredient = ingredient
         self.recipe_id = recipe_id
 
+    @classmethod
+    def from_dictionary(cls, dictionary):
+        """
+        Alternative constructor to create an ingredient from a dictionary.
+
+        :param dictionary: the dictionary that contains the values
+        :return: the created Ingredient instance
+        """
+        ingredient_id, ingredient, recipe_id = list(dictionary.values())
+        return cls(ingredient_id, ingredient, recipe_id)
+
     def add_ingredient_to_sheet(self):
         """
         Adds a new row with the data from the ingredient to the worksheet.
