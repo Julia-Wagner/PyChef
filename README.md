@@ -39,6 +39,16 @@ To visualize the necessary steps to create my cookbook, I created a flowchart us
 
 ![Flow Chart](docs/screenshots/flowchart.png)
 
+There were some changes to this flowchart during the development of the application. To better visualize them I decided to create a new flowchart showing the actual result instead of adapting the original flowchart.
+
+I decided to let the user add the instructions for a new recipe before the ingredients. This was necessary due to my object-oriented approach as *Recipe* and *Ingredient* are two different classes and I wanted to finish and save the recipe instance before adding ingredients.
+
+Another change is the feature of deleting a recipe I added after finishing the first version of my application. When viewing a recipe, the user can decide whether they want to continue or delete the recipe.
+
+Finally, I removed the **End** step in my flowchart as the application keeps looping as long as the user wants to. It is possible for the user to exit the program at different steps, which always takes them back to the welcome screen (Log in or create user).
+
+![Flow Chart Result](docs/screenshots/flowchart_result.png)
+
 ## **Features**
 
 ### **Welcome Screen**
@@ -67,6 +77,11 @@ Users can create recipes. In order to create a recipe they have to be logged in.
 To view a recipe the user first has to choose a category. After this all the available recipes for this category are shown and a recipe to view can be chosen.
 
 ![View Recipe](docs/screenshots/view_recipe.gif)
+
+### **Delete Recipe**
+A recipe can also be deleted by the user who created it.
+
+![Delete Recipe](docs/screenshots/delete_recipe.gif)
 
 ## **Credits**
 
