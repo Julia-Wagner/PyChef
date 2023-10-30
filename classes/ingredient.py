@@ -17,3 +17,11 @@ class Ingredient(SheetService):
         """
         new_ingredient = [self.ingredient_id, self.ingredient, self.recipe_id]
         SheetService.add_entry_to_sheet("ingredients", new_ingredient)
+
+    def delete_ingredient(self):
+        """
+        Get the worksheet row where the ingredient is saved and delete it.
+        """
+        self.console.print("\nDeleting ingredient...", style="info")
+        ingredient_row = self.get_row("ingredients", 1, str(self.ingredient_id))
+        self.delete_entry("ingredients", ingredient_row)

@@ -32,3 +32,12 @@ class Recipe(SheetService):
         new_recipe = [self.recipe_id, self.category, self.name,
                       self.instructions, self.created_by_id]
         SheetService.add_entry_to_sheet("recipes", new_recipe)
+
+    def delete_recipe(self):
+        """
+        Get the worksheet row where the recipe is saved and delete it.
+        """
+        self.console.print("\nDeleting recipe...", style="info")
+        recipe_row = self.get_row("recipes", 1, str(self.recipe_id))
+        self.delete_entry("recipes", recipe_row)
+
