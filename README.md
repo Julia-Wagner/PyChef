@@ -140,7 +140,6 @@ To reduce code repetition and make the code more readable and maintainable I add
   - Contains methods to get, store and delete entries from worksheets.
 
 ## **Libraries**
-
 Here is a list of the external libraries I added to the project:
 
 - [gspread](https://docs.gspread.org/en/v5.12.0/): adds Google Sheets functionality
@@ -150,6 +149,25 @@ Here is a list of the external libraries I added to the project:
 - [sys](https://docs.python.org/3/library/sys.html): to use system functionalities, used to restart the program
 - [Console and Theme from rich](https://rich.readthedocs.io/en/stable/introduction.html): for styling text in the terminal
   - I used custom themes to easily define the style of different text types such as headings, info text and error warnings.
+
+## **Deployment**
+The project was developed to be used with the [Code Institute Template](https://github.com/Code-Institute-Org/p3-template) on a mock terminal. It was deployed on Heroku following these steps:
+
+1. Create a Heroku account and **log in**.
+2. Click **New** and **Create new app** on the dashboard.
+3. Enter a unique **name** and select the region and click **Create app**.
+4. Within the created app select the tab **Settings**.
+5. At the *Config Vars* section click **Reveal Config Vars**.
+6. To use Google Sheets add a new config var with the key *CREDS*, for the value, paste the contents of the creds.json file.
+7. Add another config var with the key *PORT* and the value *8000*.
+8. Below the *Config Vars* section click **Add buildpack**. Select *Python* and save. Then add another buildpack and select *node.js*. It is important that the buildpacks are shown in this order.
+9. Navigate to the **Deploy** tab on top.
+10. Select **GitHub** as the deployment method and connect to GitHub.
+11. Search for the **repository name** of the project and click **connect**.
+12. Optionally **enable automatic deploys** to deploy each time new code is pushed to the repository.
+13. Click **Deploy Branch** to deploy the project now.
+
+[Link to my deployed project](https://pychef-6ee49d35b68f.herokuapp.com/)
 
 ## **Credits**
 
