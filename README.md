@@ -90,6 +90,10 @@ Users can create recipes. In order to create a recipe they have to be logged in.
 ### **View Recipe**
 To view a recipe the user first has to choose a category. After this, all the available recipes for this category are shown and a recipe to view can be chosen.
 
+To show available recipes, the category selection and the logged-in user are used. Input validation is used to make sure the number of an existing recipe is selected.
+
+After a recipe is selected, the name, instructions and ingredients for this recipe are shown.
+
 ![View Recipe](docs/screenshots/view_recipe.gif)
 
 ### **Delete Recipe**

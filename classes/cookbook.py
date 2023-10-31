@@ -266,13 +266,17 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
 
         cls.console.print("\nWhat kind of recipe are you looking for?",
                           style="heading")
+
+        # select the recipe category to view
         recipe_category = cls.choose_category()
 
         cls.console.print("\nLooking for recipes...", style="info")
 
+        # get available recipes in the selected category for the current user
         available_recipes = cls.get_available_recipes(recipe_category,
                                                       current_user.user_id)
 
+        # redirect to create_recipe if no recipes are available
         if not available_recipes:
             cls.console.print(f"\nYou did not add any {recipe_category} "
                               "recipes to your cookbook yet", style="error")
@@ -285,6 +289,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         cls.console.print(f"\nAvailable {recipe_category} recipes\n",
                           style="heading")
 
+        # loop through available recipes and show them as an ordered list
         possible_numbers = {}
         for number, recipe in enumerate(available_recipes, start=1):
             possible_numbers[str(number)] = recipe
@@ -299,6 +304,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                 if possible_numbers.get(selection) is None:
                     raise ValueError
                 else:
+                    # create and show recipe from valid selection
                     selected_recipe = Recipe.from_dictionary(
                         possible_numbers[selection])
                     cls.view_recipe(current_user, selected_recipe)
