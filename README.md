@@ -3,12 +3,46 @@
 [Link to live project](https://pychef-6ee49d35b68f.herokuapp.com/)
 
 **PyChef** is a digital cookbook developed as a terminal application. To test the application use the following user data to log in:
+
 - *username*: **Test**
 - *password*: **123456**
 
 The test user already contains recipes to view for each category. Of course, you can also create a new user and add your own recipes.
 
 ![Recipe Screenshot](docs/screenshots/recipe.png)
+
+## **Table of Contents**
+
+- [**PyChef**](#pychef)
+  - [**Table of Contents**](#table-of-contents)
+  - [**Planning**](#planning)
+    - [**Target Audience**](#target-audience)
+    - [**User Stories**](#user-stories)
+    - [**Features to achieve the goals**](#features-to-achieve-the-goals)
+    - [**Flowchart**](#flowchart)
+  - [**Features**](#features)
+    - [**Welcome Screen**](#welcome-screen)
+    - [**Create Account**](#create-account)
+    - [**Login**](#login)
+    - [**Create Recipe**](#create-recipe)
+    - [**View Recipe**](#view-recipe)
+    - [**Delete Recipe**](#delete-recipe)
+  - [**Future Enhancements**](#future-enhancements)
+  - [**Classes**](#classes)
+  - [**Libraries**](#libraries)
+  - [**Testing**](#testing)
+    - [**Manual Testing**](#manual-testing)
+    - [**Issues**](#issues)
+    - [**Validation**](#validation)
+      - [**HTML**](#html)
+      - [**CSS**](#css)
+      - [**Python**](#python)
+    - [**Lighthouse Testing**](#lighthouse-testing)
+    - [**User Story Testing**](#user-story-testing)
+  - [**Deployment**](#deployment)
+  - [**Credits**](#credits)
+    - [**Content**](#content)
+    - [**Media and Design**](#media-and-design)
 
 ## **Planning**
 
@@ -62,6 +96,7 @@ Finally, I removed the **End** step in my flowchart as the application keeps loo
 ## **Features**
 
 ### **Welcome Screen**
+
 On the welcome screen, ASCII Art with a book and the name of the application is displayed. Underneath the welcome message, the user can decide whether they want to log in or create a new account. The input is validated to be either **1** or **2**.
 
 ![Welcome Screen](docs/screenshots/welcome_screen.png)
@@ -69,6 +104,7 @@ On the welcome screen, ASCII Art with a book and the name of the application is 
 (Note: my screen recorder for some reason changes the color of the ASCII Art, it is all white in the application.)
 
 ### **Create Account**
+
 Users have to create an account in order to be able to store and view their personal recipes. A username and password have to be entered. After validation, they are stored in a *Google Sheets* worksheet and the user is redirected to the Login.
 
 The username is validated to have at least 4 characters. Furthermore, the method ensures that the username is not taken. The password has to be at least 6 characters long. The user can enter **exit** instead of the username or password to get back to the welcome screen instead of creating an account.
@@ -76,6 +112,7 @@ The username is validated to have at least 4 characters. Furthermore, the method
 ![Create Account](docs/screenshots/create_account.gif)
 
 ### **Login**
+
 A user that already created an account can log in by entering their username and password. The method validates the input by checking if the username exists in the *users* worksheet and if the password that is entered is identical to the one stored.
 
 For security reasons, I used *getpass* to hide the input while typing in the password. The user can enter **exit** instead of the username or password to get back to the welcome screen instead of logging in.
@@ -83,6 +120,7 @@ For security reasons, I used *getpass* to hide the input while typing in the pas
 ![Login](docs/screenshots/login.gif)
 
 ### **Create Recipe**
+
 Users can create recipes. In order to create a recipe they have to be logged in. For each recipe, a category has to be chosen. Then a recipe name and instructions for the recipe have to be entered. There has to be at least one ingredient, but it is possible to add as many ingredients as the user wants to.
 
 The user can enter **exit** instead of the recipe details and ingredients to get back to the welcome screen instead of creating a recipe.
@@ -90,6 +128,7 @@ The user can enter **exit** instead of the recipe details and ingredients to get
 ![Create Recipe](docs/screenshots/create_recipe.gif)
 
 ### **View Recipe**
+
 To view a recipe the user first has to choose a category. After this, all the available recipes for this category are shown and a recipe to view can be chosen.
 
 To show available recipes, the category selection and the logged-in user are used. Input validation is used to make sure the number of an existing recipe is selected.
@@ -99,11 +138,13 @@ After a recipe is selected, the name, instructions and ingredients for this reci
 ![View Recipe](docs/screenshots/view_recipe.gif)
 
 ### **Delete Recipe**
+
 A recipe can also be deleted by the user who created it. If this option is chosen, all ingredients and the recipe itself are deleted.
 
 ![Delete Recipe](docs/screenshots/delete_recipe.gif)
 
 ## **Future Enhancements**
+
 Some features I would like to this application in the future are:
 
 - Connect the project to a real database instead of the worksheets.
@@ -140,6 +181,7 @@ To reduce code repetition and make the code more readable and maintainable I add
   - Contains methods to get, store and delete entries from worksheets.
 
 ## **Libraries**
+
 Here is a list of the external libraries I added to the project:
 
 - [gspread](https://docs.gspread.org/en/v5.12.0/): adds Google Sheets functionality
@@ -150,7 +192,26 @@ Here is a list of the external libraries I added to the project:
 - [Console and Theme from rich](https://rich.readthedocs.io/en/stable/introduction.html): for styling text in the terminal
   - I used custom themes to easily define the style of different text types such as headings, info text and error warnings.
 
+## **Testing**
+
+### **Manual Testing**
+
+### **Issues**
+
+### **Validation**
+
+#### **HTML**
+
+#### **CSS**
+
+#### **Python**
+
+### **Lighthouse Testing**
+
+### **User Story Testing**
+
 ## **Deployment**
+
 The project was developed to be used with the [Code Institute Template](https://github.com/Code-Institute-Org/p3-template) on a mock terminal. It was deployed on Heroku following these steps:
 
 1. Create a Heroku account and **log in**.
@@ -170,6 +231,8 @@ The project was developed to be used with the [Code Institute Template](https://
 [Link to my deployed project](https://pychef-6ee49d35b68f.herokuapp.com/)
 
 ## **Credits**
+
+Thank you to my Code Institute Mentor [David Bowers](https://github.com/dnlbowers) for giving me valuable feedback and tips during this project.
 
 ### **Content**
 
