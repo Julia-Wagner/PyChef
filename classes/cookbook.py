@@ -355,11 +355,13 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                     cls.view_create_selection(current_user)
                     break
                 elif next_step == "delete":
+                    # delete all ingredients for this recipe
                     if recipe_ingredients:
                         for ingredient in recipe_ingredients:
                             ingredient_instance = Ingredient.from_dictionary(
                                 ingredient)
                             ingredient_instance.delete_ingredient()
+                    # delete the recipe
                     recipe.delete_recipe()
                     break
                 else:

@@ -78,7 +78,7 @@ The username is validated to have at least 4 characters. Furthermore, the method
 ### **Login**
 A user that already created an account can log in by entering their username and password. The method validates the input by checking if the username exists in the *users* worksheet and if the password that is entered is identical to the one stored.
 
-For security reasons I used *getpass* to hide the input while typing in the password. The user can enter **exit** instead of the username or password to get back to the welcome screen instead of logging in.
+For security reasons, I used *getpass* to hide the input while typing in the password. The user can enter **exit** instead of the username or password to get back to the welcome screen instead of logging in.
 
 ![Login](docs/screenshots/login.gif)
 
@@ -97,7 +97,7 @@ After a recipe is selected, the name, instructions and ingredients for this reci
 ![View Recipe](docs/screenshots/view_recipe.gif)
 
 ### **Delete Recipe**
-A recipe can also be deleted by the user who created it.
+A recipe can also be deleted by the user who created it. If this option is chosen, all ingredients and the recipe itself are deleted.
 
 ![Delete Recipe](docs/screenshots/delete_recipe.gif)
 
