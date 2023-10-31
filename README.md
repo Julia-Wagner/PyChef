@@ -85,6 +85,8 @@ For security reasons, I used *getpass* to hide the input while typing in the pas
 ### **Create Recipe**
 Users can create recipes. In order to create a recipe they have to be logged in. For each recipe, a category has to be chosen. Then a recipe name and instructions for the recipe have to be entered. There has to be at least one ingredient, but it is possible to add as many ingredients as the user wants to.
 
+The user can enter **exit** instead of the recipe details and ingredients to get back to the welcome screen instead of creating a recipe.
+
 ![Create Recipe](docs/screenshots/create_recipe.gif)
 
 ### **View Recipe**
@@ -100,6 +102,12 @@ After a recipe is selected, the name, instructions and ingredients for this reci
 A recipe can also be deleted by the user who created it. If this option is chosen, all ingredients and the recipe itself are deleted.
 
 ![Delete Recipe](docs/screenshots/delete_recipe.gif)
+
+## **Future Enhancements**
+Some features I would like to this application in the future are:
+
+- Connect the project to a real database instead of the worksheets.
+- Give the users the possibility to edit a recipe. I thought about adding that, but decided not to as it is not necessary for the scope of this project. I do not think I could implement this with good user experience without having the possibility of clicking and using arrow controls to navigate the information to edit.
 
 ## **Credits**
 
