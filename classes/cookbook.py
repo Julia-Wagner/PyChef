@@ -67,10 +67,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
             try:
                 selection = input("\nEnter 1 or 2: \n").strip()
 
-                if selection == "exit":
-                    cls.exit_cookbook()
-                    break
-                elif selection == "1":
+                if selection == "1":
                     cls.login()
                     break
                 elif selection == "2":
@@ -108,6 +105,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                     cls.exit_cookbook()
                     break
 
+                # check if username exists
                 if not cls.get_entry("users", username, 2):
                     raise ValueError("Username not found")
 
@@ -118,14 +116,17 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
             else:
                 break
 
+        # get the users data to ensure the correct password is entered
         user_row = cls.get_row("users", 2, username)
         row_values = cls.get_row_values("users", user_row)
 
         cls.console.print("\nNote: for security reasons your password "
                           "won´t be displayed while typing", style="info")
+
         # input password until correct
         while True:
             try:
+                # use getpass to hide the input while typing
                 password = getpass("Please enter your password: \n").strip()
 
                 if password == "exit":
@@ -142,6 +143,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
             else:
                 break
 
+        # get the currently logged in user and give it to called methods
         current_user = User.get_user(row_values)
         cls.view_create_selection(current_user)
 

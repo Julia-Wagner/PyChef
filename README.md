@@ -3,8 +3,8 @@
 [Link to live project](https://pychef-6ee49d35b68f.herokuapp.com/)
 
 **PyChef** is a digital cookbook developed as a terminal application. To test the application use the following user data to log in:
-- username: *Test*
-- password: *123456*
+- *username*: **Test**
+- *password*: **123456**
 
 The test user already contains recipes to view for each category. Of course, you can also create a new user and add your own recipes.
 
@@ -62,7 +62,7 @@ Finally, I removed the **End** step in my flowchart as the application keeps loo
 ## **Features**
 
 ### **Welcome Screen**
-On the welcome screen, ASCII Art with a book and the name of the application is displayed. Underneath the welcome message, the user can decide whether they want to log in or create a new account.
+On the welcome screen, ASCII Art with a book and the name of the application is displayed. Underneath the welcome message, the user can decide whether they want to log in or create a new account. The input is validated to be either **1** or **2**.
 
 ![Welcome Screen](docs/screenshots/welcome_screen.png)
 
@@ -74,7 +74,9 @@ Users have to create an account in order to be able to store and view their pers
 ![Create Account](docs/screenshots/create_account.gif)
 
 ### **Login**
-A user that already created an account can log in by entering their username and password.
+A user that already created an account can log in by entering their username and password. The method validates the input by checking if the username exists in the *users* worksheet and if the password that is entered is identical to the one stored.
+
+For security reasons I used *getpass* to hide the input while typing in the password. The user can enter **exit** instead of the username or password to get back to the welcome screen instead of logging in.
 
 ![Login](docs/screenshots/login.gif)
 
