@@ -139,6 +139,18 @@ To reduce code repetition and make the code more readable and maintainable I add
   - The connection to the API and error handling regarding this connection is handled here.
   - Contains methods to get, store and delete entries from worksheets.
 
+## **Libraries**
+
+Here is a list of the external libraries I added to the project:
+
+- [gspread](https://docs.gspread.org/en/v5.12.0/): adds Google Sheets functionality
+- [Credentials from google.oauth2.service_account](https://google-auth.readthedocs.io/en/master/reference/google.oauth2.service_account.html): access to Google cloud services
+- [getpass](https://docs.python.org/3/library/getpass.html): hides the password while typing
+- [os](https://docs.python.org/3/library/os.html): to use operating system functionalities, used to clear the console and restart the program
+- [sys](https://docs.python.org/3/library/sys.html): to use system functionalities, used to restart the program
+- [Console and Theme from rich](https://rich.readthedocs.io/en/stable/introduction.html): for styling text in the terminal
+  - I used custom themes to easily define the style of different text types such as headings, info text and error warnings.
+
 ## **Credits**
 
 ### **Content**
