@@ -107,7 +107,37 @@ A recipe can also be deleted by the user who created it. If this option is chose
 Some features I would like to this application in the future are:
 
 - Connect the project to a real database instead of the worksheets.
-- Give the users the possibility to edit a recipe. I thought about adding that, but decided not to as it is not necessary for the scope of this project. I do not think I could implement this with good user experience without having the possibility of clicking and using arrow controls to navigate the information to edit.
+- Give the users the possibility to edit a recipe. I thought about adding that but decided not to as it is not necessary for the scope of this project. I do not think I could implement this with a good user experience without having the possibility of clicking and using arrow controls to navigate the information to edit.
+
+## **Classes**
+
+I decided to use object-oriented programming and only use classes and methods in my code. Here is a brief overview of my classes and methods.
+
+- **Cookbook**
+  - The main class that interacts with the user and calls other classes.
+  - Methods handle user input and call the necessary classes throughout the program.
+- **User**
+  - attributes: user_id, username, password
+  - Creates a user instance when a user logs in or creates an account. User data is stored in and fetched from the worksheet.
+- **Recipe**
+  - attributes: recipe_id, category, name, instructions, created_by_id
+  - Creates a recipe instance when called and has an alternative constructor to create an instance from a dictionary.
+  - Stores and deletes recipe data in the worksheet.
+- **Ingredient**
+  - attributes: ingredient_id, ingredient, recipe_id
+  - Creates an ingredient instance when called and has an alternative constructor to create an instance from a dictionary.
+  - Stores and deletes ingredient data in the worksheet.
+
+To reduce code repetition and make the code more readable and maintainable I added these classes.
+
+- **Mixins** (ClearConsole, StyleConsole, RestartProgram)
+  - **ClearConsole**: Mixin containing a method to easily clear the console.
+  - **StyleConsole**: Mixin containing a method that creates a custom theme for the rich package.
+  - **RestartProgram**: Mixin containing a method to easily restart the program in case of an error or if the user wants to exit.
+- **SheetService**
+  - A service class to handle all methods regarding Google Sheets.
+  - The connection to the API and error handling regarding this connection is handled here.
+  - Contains methods to get, store and delete entries from worksheets.
 
 ## **Credits**
 
