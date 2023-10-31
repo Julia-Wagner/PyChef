@@ -176,6 +176,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                     raise ValueError("Username must be at least 4 "
                                      "characters long")
 
+                # check if username is taken
                 if cls.get_entry("users", username, 2):
                     raise ValueError("Username is already taken")
 
