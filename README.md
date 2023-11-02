@@ -139,7 +139,7 @@ After a recipe is selected, the name, instructions and ingredients for this reci
 
 ### **Delete Recipe**
 
-A recipe can also be deleted by the user who created it. If this option is chosen, all ingredients and the recipe itself are deleted.
+A recipe can also be deleted by the user who created it. If this option is chosen, all ingredients and the recipe itself are deleted. To prevent unwanted deletion, the user is asked to confirm the selection before the recipe is deleted.
 
 ![Delete Recipe](docs/screenshots/delete_recipe.gif)
 
@@ -149,6 +149,7 @@ Some features I would like to this application in the future are:
 
 - Connect the project to a real database instead of the worksheets.
 - Give the users the possibility to edit a recipe. I thought about adding that but decided not to as it is not necessary for the scope of this project. I do not think I could implement this with a good user experience without having the possibility of clicking and using arrow controls to navigate the information to edit.
+- Make the recipe downloadable and converting it to a PDF file. After doing some research, I think it should be possible to convert a recipe to a PDF file the user can download. However, that is a project for the future and no necessary feature for this project.
 
 ## **Classes**
 
