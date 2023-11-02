@@ -202,6 +202,16 @@ I tested each feature while developing and after finishing it before moving on t
 
 ### **Issues**
 
+Besides the improvements described below that I made after using Flake8 and Lighthouse, here is a list of issues that were harder to fix.
+
+1. **Making a completely object-oriented program without any functions.** 
+   - It was a bit hard starting the project from scratch already having the idea of just using classes and methods in mind. I was not sure with which class to start and what methods I would need.
+   - I then decided to just start with *"Spaghetti Code"* and write function after function to get the first few steps of my flowchart to work.
+   - After I then had an idea which classes and methods I would need for this code, I began refactoring and structuring it using classes and methods.
+2. **The use of @classmethod and @staticmethod**
+   - While I could quickly figure out where a *@staticmethod* would be appropriate, I had a hard time deciding whether to use *@classmethod* for many methods.
+   - After doing some research and looking for examples, I decided that *@classmethod* is appropriate for many of my methods, as I often don´t need to access instances, but the classes and their variables themselves.
+
 ### **Validation**
 
 I made some small changes to the template provided by Code Institute, so besides my Python code, I also validated HTML and CSS.
