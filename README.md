@@ -145,7 +145,7 @@ A recipe can also be deleted by the user who created it. If this option is chose
 
 ## **Future Enhancements**
 
-Some features I would like to this application in the future are:
+Some features I would like to add to this application in the future are:
 
 - Connect the project to a real database instead of the worksheets.
 - Give the users the possibility to edit a recipe. I thought about adding that but decided not to as it is not necessary for the scope of this project. I do not think I could implement this with a good user experience without having the possibility of clicking and using arrow controls to navigate the information to edit.
@@ -199,7 +199,7 @@ Here is a list of the external libraries I added to the project:
 
 I deployed my project as soon as I got my Heroku credits. Because that took longer than expected, I tested the application in my local terminal during the first period of development. I noticed some styling issues in my terminal but decided to focus on the logic first. After deploying the project, the styling issues were no longer visible in the mock terminal.
 
-I tested each feature while developing and after finishing it before moving on to the next feature. This way the application grew step by step. To test my input validation and error handling I made sure to always enter what is not expected to make sure the user can not break the application.
+I tested each feature while developing and after finishing it before moving on to the next feature. This way the application grew step by step. To test my input validation and error handling, I made sure to always enter what is not expected to make sure the user can not break the application.
 
 ### **Issues**
 
@@ -211,7 +211,7 @@ Besides the improvements described below that I made after using Flake8 and Ligh
    - After I then had an idea of which classes and methods I would need for this code, I began refactoring and structuring it using classes and methods.
 2. **The use of @classmethod and @staticmethod**
    - While I could quickly figure out where a *@staticmethod* would be appropriate, I had a hard time deciding whether to use *@classmethod* for many methods.
-   - After doing some research and looking for examples, I decided that *@classmethod* is appropriate for many of my methods, as I often don´t need to access instances, but the classes and their variables themselves.
+   - After doing some research and looking at examples, I decided that *@classmethod* is appropriate for many of my methods, as I often don´t need to access instances, but the classes and their variables themselves.
 
 ### **Validation**
 
@@ -231,7 +231,7 @@ I used the [Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/validator?
 
 #### **Python**
 
-To ensure that my code follows Pep8 style guidelines I installed [Flake8](https://flake8.pycqa.org/en/latest/). I ran the linter on the run.py file and all my classes. At first, I had some errors for lines that were too long and I got the *W605 invalid escape sequence* warning for my ASCII Art. After fixing the line lengths and using a raw string for my ASCII Art as suggested in this [stackoverflow question](https://stackoverflow.com/questions/61497292/getting-pep8-invalid-escape-sequence-warning-trying-to-escape-parentheses-in-a) Flake8 does not show any errors for my Python code.
+To ensure that my code follows Pep8 style guidelines I installed [Flake8](https://flake8.pycqa.org/en/latest/). I ran the linter on the run.py file and all my classes. At first, I had some errors for lines that were too long and I got the *W605 invalid escape sequence* warning for my ASCII Art. After fixing the line lengths and using a raw string for my ASCII Art as suggested in this [stackoverflow question](https://stackoverflow.com/questions/61497292/getting-pep8-invalid-escape-sequence-warning-trying-to-escape-parentheses-in-a), Flake8 does not show any errors for my Python code.
 
 ![Flake8 Validation](docs/screenshots/flake8.png)
 
@@ -285,6 +285,7 @@ Thank you to my Code Institute Mentor [David Bowers](https://github.com/dnlbower
 - The [Code Institute Template](https://github.com/Code-Institute-Org/p3-template) was used for this project to have a fake terminal in the browser.
 - I used the walkthrough project from Code Institute as a reference on how to connect my project to Google Sheets.
 - The method to clear the console is from [DelftStack](https://www.delftstack.com/howto/python/python-clear-console/).
+- The method to restart the program is from [bobbyhadz](https://bobbyhadz.com/blog/how-to-restart-python-script-from-within-itself).
 
 ### **Media and Design**
 
