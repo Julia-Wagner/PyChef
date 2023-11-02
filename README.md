@@ -222,6 +222,10 @@ To ensure that my code follows Pep8 style guidelines I installed [Flake8](https:
 
 ### **Lighthouse Testing**
 
+After testing the application with Lighthouse, I updated the button color to ensure better contrast and added a meta description to the template HTML. This ensure to have values of 99 for *Performance* and 100 for *Accessibility*, *Best Practices* and *SEO*.
+
+![Lighthouse Testing](docs/screenshots/lighthouse_desktop.png)
+
 ### **User Story Testing**
 
 ## **Deployment**
