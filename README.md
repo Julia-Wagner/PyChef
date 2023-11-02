@@ -196,11 +196,15 @@ Here is a list of the external libraries I added to the project:
 
 ### **Manual Testing**
 
+I deployed my project as soon as I got my Heroku credits. Because that took longer than expected, I tested the application in my local terminal during the first period of development. I noticed some styling issues in my terminal but decided to focus on the logic first. After deploying the project, the styling issues were no longer visible in the mock terminal.
+
+I tested each feature while developing and after finishing it before moving on to the next feature. This way the application grew step by step. To test my input validation and error handling I made sure to always enter what is not expected to make sure the user can not break the application.
+
 ### **Issues**
 
 ### **Validation**
 
-I made some small changes to the template provided by Code Institute, so besides my Python code I also validated HTML and CSS.
+I made some small changes to the template provided by Code Institute, so besides my Python code, I also validated HTML and CSS.
 
 #### **HTML**
 
@@ -216,13 +220,13 @@ I used the [Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/validator?
 
 #### **Python**
 
-To ensure that my code follows Pep8 style guidelines I installed [Flake8](https://flake8.pycqa.org/en/latest/). I ran the linter on the my run.py file and all my classes. At first I had some errors for lines that were too long and I got the *W605 invalid escape sequence* warning for my ASCII Art. After fixing the line lengths and using a raw string for my ASCII Art as suggested in this [stackoverflow question](https://stackoverflow.com/questions/61497292/getting-pep8-invalid-escape-sequence-warning-trying-to-escape-parentheses-in-a) Flake8 does not show any errors for my Python code.
+To ensure that my code follows Pep8 style guidelines I installed [Flake8](https://flake8.pycqa.org/en/latest/). I ran the linter on the run.py file and all my classes. At first, I had some errors for lines that were too long and I got the *W605 invalid escape sequence* warning for my ASCII Art. After fixing the line lengths and using a raw string for my ASCII Art as suggested in this [stackoverflow question](https://stackoverflow.com/questions/61497292/getting-pep8-invalid-escape-sequence-warning-trying-to-escape-parentheses-in-a) Flake8 does not show any errors for my Python code.
 
 ![Flake8 Validation](docs/screenshots/flake8.png)
 
 ### **Lighthouse Testing**
 
-After testing the application with Lighthouse, I updated the button color to ensure better contrast and added a meta description to the template HTML. This ensure to have values of 99 for *Performance* and 100 for *Accessibility*, *Best Practices* and *SEO*.
+After testing the application with Lighthouse, I updated the button color to ensure better contrast and added a meta description to the template HTML. This lead to values of 99 for *Performance* and 100 for *Accessibility*, *Best Practices* and *SEO*.
 
 ![Lighthouse Testing](docs/screenshots/lighthouse_desktop.png)
 
@@ -236,9 +240,9 @@ After testing the application with Lighthouse, I updated the button color to ens
 | As a user, I want to look up my recipes after saving them.                                               | Recipes can be viewed after logging in and choosing the according category.                                                                                          | &check; |
 | As a user, I want to clearly see the ingredients and instructions for each recipe.                       | After a recipe to view is selected, the name, instructions and ingredients for the recipe are shown.                                                                 | &check; |
 | As a user, I want to get clear feedback from the application.                                            | Input validation ensures that the input from the user is correct. If not, clear error messages are returned and headings indicate what the user can do at each step. | &check; |
-| As the site owner, I want to ensure the users have a good experience using the digital cookbook.         | The application is built with UX in mind. A fitting background image was added and colors and font styles are used to improve user experience.                       | &check; |
+| As the site owner, I want to ensure the users have a good experience using the digital cookbook.         | The application is built with UX in mind. A fitting background image was added and colors and font styles are used to improve the user experience.                   | &check; |
 | As the site owner, I want to provide the users with helpful feedback.                                    | Feedback is given to the user after successfully creating an account or recipe. Headings and error messages are shown throughout the program.                        | &check; |
-| As the site owner, I want to be able to differentiate between users and show them the according recipes. | Each recipe is stored clearly assigned to the user that created it. Only recipes created by the logged-in user are shown.                                            | &check; |
+| As the site owner, I want to be able to differentiate between users and show them the according recipes. | Each recipe is stored, clearly assigned to the user that created it. Only recipes created by the logged-in user are shown.                                           | &check; |
 
 ## **Deployment**
 
