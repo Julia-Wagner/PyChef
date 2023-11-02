@@ -355,14 +355,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                     cls.view_create_selection(current_user)
                     break
                 elif next_step == "delete":
-                    # delete all ingredients for this recipe
-                    if recipe_ingredients:
-                        for ingredient in recipe_ingredients:
-                            ingredient_instance = Ingredient.from_dictionary(
-                                ingredient)
-                            ingredient_instance.delete_ingredient()
-                    # delete the recipe
-                    recipe.delete_recipe()
+                    cls.delete_recipe(recipe, recipe_ingredients, current_user)
                     break
                 else:
                     raise ValueError
@@ -373,6 +366,34 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                 continue
 
         cls.view_create_selection(current_user)
+
+    @classmethod
+    def delete_recipe(cls, recipe, recipe_ingredients, current_user):
+        """
+        Delete all ingredients and the recipe.
+
+        :param Recipe recipe: the recipe to delete
+        :param list recipe_ingredients: the ingredients of the recipe
+        """
+        while True:
+            confirm = (input("Do you want to delete the recipe? (y/n)\n")
+                       .lower().strip())
+
+            if confirm == "y":
+                # delete all ingredients for this recipe
+                if recipe_ingredients:
+                    for ingredient in recipe_ingredients:
+                        ingredient_instance = Ingredient.from_dictionary(
+                            ingredient)
+                        ingredient_instance.delete_ingredient()
+                # delete the recipe
+                recipe.delete_recipe()
+                break
+            elif confirm == "n":
+                cls.view_recipe(current_user, recipe)
+                break
+            else:
+                cls.console.print("Please enter either y or n", style="error")
 
     @classmethod
     def create_recipe(cls, current_user):
