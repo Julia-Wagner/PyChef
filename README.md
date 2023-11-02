@@ -200,11 +200,25 @@ Here is a list of the external libraries I added to the project:
 
 ### **Validation**
 
+I made some small changes to the template provided by Code Institute, so besides my Python code I also validated HTML and CSS.
+
 #### **HTML**
+
+I used the [W3C Markup Validation Service](https://validator.w3.org/nu/?doc=https%3A%2F%2Fpychef-6ee49d35b68f.herokuapp.com%2F) to validate my HTML and did not get any warnings or errors.
+
+![HTML Validation](docs/screenshots/html_validation.png)
 
 #### **CSS**
 
+I used the [Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fpychef-6ee49d35b68f.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en) to validate my CSS. The validation came back with no errors or warnings.
+
+![CSS Validation](docs/screenshots/css_validation.png)
+
 #### **Python**
+
+To ensure that my code follows Pep8 style guidelines I installed [Flake8](https://flake8.pycqa.org/en/latest/). I ran the linter on the my run.py file and all my classes. At first I had some errors for lines that were too long and I got the *W605 invalid escape sequence* warning for my ASCII Art. After fixing the line lengths and using a raw string for my ASCII Art as suggested in this [stackoverflow question](https://stackoverflow.com/questions/61497292/getting-pep8-invalid-escape-sequence-warning-trying-to-escape-parentheses-in-a) Flake8 does not show any errors for my Python code.
+
+![Flake8 Validation](docs/screenshots/flake8.png)
 
 ### **Lighthouse Testing**
 

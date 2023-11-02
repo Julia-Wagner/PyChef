@@ -34,5 +34,6 @@ class Ingredient(SheetService):
         Gets the worksheet row where the ingredient is saved and deletes it.
         """
         self.console.print("\nDeleting ingredient...", style="info")
-        ingredient_row = self.get_row("ingredients", 1, str(self.ingredient_id))
+        ingredient_row = self.get_row("ingredients", 1,
+                                      str(self.ingredient_id))
         self.delete_entry("ingredients", ingredient_row)

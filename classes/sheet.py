@@ -116,7 +116,7 @@ class SheetService:
     def get_row(cls, sheet_name, column, entry):
         """
         Gets the row number for the given entry
-        
+
         :param sheet_name:
         :param column:
         :param entry:

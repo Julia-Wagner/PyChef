@@ -40,4 +40,3 @@ class Recipe(SheetService):
         self.console.print("\nDeleting recipe...", style="info")
         recipe_row = self.get_row("recipes", 1, str(self.recipe_id))
         self.delete_entry("recipes", recipe_row)
-
