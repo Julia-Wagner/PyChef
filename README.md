@@ -228,6 +228,18 @@ After testing the application with Lighthouse, I updated the button color to ens
 
 ### **User Story Testing**
 
+| User Story                                                                                               | Expected Result                                                                                                                                                      | Pass    |
+|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| As a user, I want to create an account and log in.                                                       | The first step of the application is to create an account or log in.                                                                                                 | &check; |
+| As a user, I want to create a digital cookbook with my recipes.                                          | The application can be used as a digital cookbook. A logged-in user can add recipes to it.                                                                           | &check; |
+| As a user, I want to save my recipes in different categories.                                            | A category has to be chosen for each recipe when creating it and to view recipes.                                                                                    | &check; |
+| As a user, I want to look up my recipes after saving them.                                               | Recipes can be viewed after logging in and choosing the according category.                                                                                          | &check; |
+| As a user, I want to clearly see the ingredients and instructions for each recipe.                       | After a recipe to view is selected, the name, instructions and ingredients for the recipe are shown.                                                                 | &check; |
+| As a user, I want to get clear feedback from the application.                                            | Input validation ensures that the input from the user is correct. If not, clear error messages are returned and headings indicate what the user can do at each step. | &check; |
+| As the site owner, I want to ensure the users have a good experience using the digital cookbook.         | The application is built with UX in mind. A fitting background image was added and colors and font styles are used to improve user experience.                       | &check; |
+| As the site owner, I want to provide the users with helpful feedback.                                    | Feedback is given to the user after successfully creating an account or recipe. Headings and error messages are shown throughout the program.                        | &check; |
+| As the site owner, I want to be able to differentiate between users and show them the according recipes. | Each recipe is stored clearly assigned to the user that created it. Only recipes created by the logged-in user are shown.                                            | &check; |
+
 ## **Deployment**
 
 The project was developed to be used with the [Code Institute Template](https://github.com/Code-Institute-Org/p3-template) on a mock terminal. It was deployed on Heroku following these steps:
