@@ -233,11 +233,12 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                           style="heading")
         cls.console.print("1 View recipe", style="option")
         cls.console.print("2 Create a new recipe", style="option")
+        cls.console.print("3 Log out", style="option")
 
         # show until correct selection is made
         while True:
             try:
-                selection = input("\nEnter 1 or 2: \n").strip()
+                selection = input("\nEnter 1, 2 or 3: \n").strip()
 
                 if selection == "1":
                     cls.select_recipe(current_user)
@@ -245,11 +246,14 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                 elif selection == "2":
                     cls.create_recipe(current_user)
                     break
+                elif selection == "3":
+                    cls.exit_cookbook()
+                    break
                 else:
                     raise ValueError
 
             except ValueError:
-                cls.console.print("Please select either 1 or 2", style="error")
+                cls.console.print("Please select either 1, 2 or 3", style="error")
 
     @classmethod
     def select_recipe(cls, current_user):
