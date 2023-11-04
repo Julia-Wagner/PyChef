@@ -99,7 +99,8 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         # input username until correct
         while True:
             try:
-                username = input("\nPlease enter your username:\n").lower().strip()
+                username = input(
+                    "\nPlease enter your username:\n").lower().strip()
 
                 if username == "exit":
                     cls.exit_cookbook()
@@ -253,7 +254,9 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                     raise ValueError
 
             except ValueError:
-                cls.console.print("Please select either 1, 2 or 3", style="error")
+                cls.console.print(
+                    "Please select either 1, 2 or 3",
+                    style="error")
 
     @classmethod
     def select_recipe(cls, current_user):

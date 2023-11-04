@@ -4,7 +4,7 @@
 
 **PyChef** is a digital cookbook developed as a terminal application. To test the application use the following user data to log in:
 
-- *username*: **Test**
+- *username*: **test**
 - *password*: **123456**
 
 The test user already contains recipes to view for each category. Of course, you can also create a new user and add your own recipes.
@@ -107,7 +107,7 @@ On the welcome screen, ASCII Art with a book and the name of the application is 
 
 Users have to create an account in order to be able to store and view their personal recipes. A username and password have to be entered. After validation, they are stored in a *Google Sheets* worksheet and the user is redirected to the Login.
 
-The username is validated to have at least 4 characters. Furthermore, the method ensures that the username is not taken. The password has to be at least 6 characters long. The user can enter **exit** instead of the username or password to get back to the welcome screen instead of creating an account.
+The username is validated to have at least 4 characters and is stored as all lowercase. Furthermore, the method ensures that the username is not taken. The password has to be at least 6 characters long. The user can enter **exit** instead of the username or password to get back to the welcome screen instead of creating an account.
 
 ![Create Account](docs/screenshots/create_account.gif)
 
