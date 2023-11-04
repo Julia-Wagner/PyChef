@@ -2,7 +2,11 @@
 
 [Link to live project](https://pychef-6ee49d35b68f.herokuapp.com/)
 
-**PyChef** is a digital cookbook developed as a terminal application. To test the application use the following user data to log in:
+**PyChef** is a digital cookbook developed as a terminal application. Users can create an account and log in. After logging in users can add new recipes to their cookbook and view their personal recipes.
+
+I decided to create this digital cookbook for my third Code Institute project, as I had the plan to make an enterely object-oriented project. I thought of possible classes and methods and decided that a cookbook would be a good application to practice OOP.
+
+To test the application use the following user data to log in:
 
 - *username*: **test**
 - *password*: **123456**
