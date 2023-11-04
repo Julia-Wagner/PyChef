@@ -149,7 +149,7 @@ A recipe can also be deleted by the user who created it. If this option is chose
 
 ## **Future Enhancements**
 
-Some features I would like to add to this application in the future are:
+I believe I added all the necessary features for a fully-functioning real-world application. The project is ready for production and has implemented all the planned features. Some additions I would like to make to this application in the future are:
 
 - Connect the project to a real database instead of the worksheets.
 - Give the users the possibility to edit a recipe. I thought about adding that but decided not to as it is not necessary for the scope of this project. I do not think I could implement this with a good user experience without having the possibility of clicking and using arrow controls to navigate the information to edit.
@@ -182,7 +182,7 @@ To reduce code repetition and make the code more readable and maintainable I add
   - **RestartProgram**: Mixin containing a method to easily restart the program in case of an error or if the user wants to exit.
 - **SheetService**
   - A service class to handle all methods regarding Google Sheets.
-  - The connection to the API and error handling regarding this connection is handled here.
+  - The connection to the API and error handling regarding this connection are handled here.
   - Contains methods to get, store and delete entries from worksheets.
 
 ## **Libraries**
@@ -207,11 +207,11 @@ I tested each feature while developing and after finishing it before moving on t
 
 ### **Issues**
 
-Besides the improvements described below that I made after using Flake8 and Lighthouse, here is a list of issues that were harder to fix. The issues are rather decisions I had to make than real bugs. I always made sure to test while developing a new feature, so there were no real bugs apart from what was not finished yet.
+Besides the improvements described in the sections below that I made after using Flake8 and Lighthouse, here is a list of issues that were harder to fix. The issues are rather decisions I had to make than real bugs. I always made sure to test while developing a new feature, so there were no real bugs apart from what was not finished yet.
 
 1. **Making a completely object-oriented program without any functions.** 
    - It was a bit hard starting the project from scratch already having the idea of just using classes and methods in mind. I was not sure with which class to start and what methods I would need.
-   - I then decided to just start with *"Spaghetti Code"* and write function after function to get the first few steps of my flowchart to work.
+   - I then decided to just start with *"Spaghetti Code"* and write function after function in the run.py file to get the first few steps of my flowchart to work.
    - After I then had an idea of which classes and methods I would need for this code, I began refactoring and structuring it using classes and methods.
 2. **The use of @classmethod and @staticmethod**
    - While I could quickly figure out where a *@staticmethod* would be appropriate, I had a hard time deciding whether to use *@classmethod* for many methods.
@@ -235,7 +235,7 @@ I used the [Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/validator?
 
 #### **Python**
 
-To ensure that my code follows Pep8 style guidelines I installed [Flake8](https://flake8.pycqa.org/en/latest/). I ran the linter on the run.py file and all my classes. At first, I had some errors for lines that were too long and I got the *W605 invalid escape sequence* warning for my ASCII Art. After fixing the line lengths and using a raw string for my ASCII Art as suggested in this [stackoverflow question](https://stackoverflow.com/questions/61497292/getting-pep8-invalid-escape-sequence-warning-trying-to-escape-parentheses-in-a), Flake8 does not show any errors for my Python code.
+To ensure that my code follows Pep8 style guidelines I installed [Flake8](https://flake8.pycqa.org/en/latest/). I ran the linter on the run.py file and all my class files. At first, I had some errors for lines that were too long and I got the *W605 invalid escape sequence* warning for my ASCII Art. After fixing the line lengths and using a raw string for my ASCII Art as suggested in this [stackoverflow question](https://stackoverflow.com/questions/61497292/getting-pep8-invalid-escape-sequence-warning-trying-to-escape-parentheses-in-a), Flake8 does not show any errors for my Python code.
 
 ![Flake8 Validation](docs/screenshots/flake8.png)
 
