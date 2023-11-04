@@ -99,7 +99,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         # input username until correct
         while True:
             try:
-                username = input("\nPlease enter your username:\n").strip()
+                username = input("\nPlease enter your username:\n").lower().strip()
 
                 if username == "exit":
                     cls.exit_cookbook()
@@ -166,7 +166,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
         # input username until valid selection was made
         while True:
             try:
-                username = input("\nUsername: \n").strip()
+                username = input("\nUsername: \n").lower().strip()
 
                 if username == "exit":
                     cls.exit_cookbook()
