@@ -204,6 +204,15 @@ If **Log in to your account** is chosen, as well as after creating an account, t
 
 After logging in the user gets to the main menu where they can choose to view or create a recipe or log out. If **Log out** is chosen, a method within the **Cookbook** class is called, which redirects the user to the welcome screen after they press enter again.
 
+If **Create a new recipe** is chosen, the *create_recipe* method is called. This calls other methods within the **Cookbook** class which handle the selection and input of the recipe category, name and instruction. After validating the input, a new **Recipe** instance is created and added to the *recipes* worksheet using the same method in **SheetService** as was used to add a new user to the worksheet.\
+After saving the recipe, the ingredients can be added. The user can add one ingredient at the time, as long as the user chooses to add another ingredient. Each validated ingredient creates a new **Ingredient** instance which is then added to the *ingredients* worksheet again using the method in **SheetService**. After the user decides to add no more ingredients, the method to view the created recipe is called.
+
+![View recipe](docs/screenshots/view_recipe.png)
+
+If the user chooses **View recipe**, the method to select a recipe is called. This calls the method in the **Cookbook** class that was already used for creating a recipe, letting the user select a category. Then a method from **SheetService** is called, returning all the available recipes for the logged-in user with the selected category.\
+If there are no available recipes, the user is redirected to creating a recipe. Otherwise, the available recipes are shown as a list. After a valid selection was made, the data retrieved from the worksheet for the selected recipe is used to create a **Recipe** instance, calling the alternative constructor in the **Recipe** class and it is given to the method to view the selected recipe.\
+This method in the **Cookbook** class prints the recipe name and instructions. It then calls a method in **SheetService** to get all the ingredient entries belonging to this recipe and prints them as a list.
+
 ## **Libraries**
 
 Here is a list of the external libraries I added to the project:
