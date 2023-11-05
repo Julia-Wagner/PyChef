@@ -1,12 +1,12 @@
 from getpass import getpass
-from .mixins import ClearConsole, StyleConsole, RestartProgram
+from .mixins import ClearConsole, StyleConsole
 from .sheet import SheetService
 from .user import User
 from .recipe import Recipe
 from .ingredient import Ingredient
 
 
-class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
+class Cookbook(ClearConsole, StyleConsole, SheetService):
     """
     Main Class to interact with the user and call other classes
     """
