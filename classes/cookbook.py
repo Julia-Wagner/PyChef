@@ -145,7 +145,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
                 break
 
         # get the currently logged in user and give it to called methods
-        current_user = User.get_user(row_values)
+        current_user = User.from_list(row_values)
         cls.view_create_selection(current_user)
 
     @classmethod
