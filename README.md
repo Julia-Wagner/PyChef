@@ -4,7 +4,7 @@
 
 **PyChef** is a digital cookbook developed as a terminal application. Users can create an account and log in. After logging in users can add new recipes to their cookbook and view their personal recipes.
 
-I decided to create this digital cookbook for my third Code Institute project, as I had the plan to make an enterely object-oriented project. I thought of possible classes and methods and decided that a cookbook would be a good application to practice OOP.
+I decided to create this digital cookbook for my third Code Institute project, as I had the plan to make an entirely object-oriented project. I thought of possible classes and methods and decided that a cookbook would be a good application to practice object-oriented programming.
 
 To test the application use the following user data to log in:
 
@@ -32,7 +32,9 @@ The test user already contains recipes to view for each category. Of course, you
     - [**View Recipe**](#view-recipe)
     - [**Delete Recipe**](#delete-recipe)
   - [**Future Enhancements**](#future-enhancements)
-  - [**Classes**](#classes)
+  - [**Data Model**](#data-model)
+    - [**Classes**](#classes)
+    - [**Logic Flow**](#logic-flow)
   - [**Libraries**](#libraries)
   - [**Testing**](#testing)
     - [**Manual Testing**](#manual-testing)
@@ -153,9 +155,11 @@ I believe I added all the necessary features for a fully-functioning real-world 
 
 - Connect the project to a real database instead of the worksheets.
 - Give the users the possibility to edit a recipe. I thought about adding that but decided not to as it is not necessary for the scope of this project. I do not think I could implement this with a good user experience without having the possibility of clicking and using arrow controls to navigate the information to edit.
-- Make the recipe downloadable and converting it to a PDF file. After doing some research, I think it should be possible to convert a recipe to a PDF file the user can download. However, that is a project for the future and no necessary feature for this project.
+- Make the recipe downloadable and convert it to a PDF file. After doing some research, I think it should be possible to convert a recipe to a PDF file the user can download. However, that is a project for the future and no necessary feature for this project.
 
-## **Classes**
+## **Data Model**
+
+### **Classes**
 
 I decided to use object-oriented programming and only use classes and methods in my code. Here is a brief overview of my classes and methods.
 
@@ -164,7 +168,7 @@ I decided to use object-oriented programming and only use classes and methods in
   - Methods handle user input and call the necessary classes throughout the program.
 - **User**
   - attributes: user_id, username, password
-  - Creates a user instance when a user logs in or creates an account. User data is stored in and fetched from the worksheet.
+  - Creates a user instance using an alternative constructor when a user logs in or creates an account. User data is stored in and fetched from the worksheet.
 - **Recipe**
   - attributes: recipe_id, category, name, instructions, created_by_id
   - Creates a recipe instance when called and has an alternative constructor to create an instance from a dictionary.
@@ -184,6 +188,21 @@ To reduce code repetition and make the code more readable and maintainable I add
   - A service class to handle all methods regarding Google Sheets.
   - The connection to the API and error handling regarding this connection are handled here.
   - Contains methods to get, store and delete entries from worksheets.
+
+### **Logic Flow**
+
+The *run.py* file creates an instance of the class **Cookbook**. This handles the flow of the application and calls the other classes when necessary.
+At initialization, the cookbook clears the terminal and calls the method to show the welcome message.
+
+![Account selection](docs/screenshots/account_selection.png)
+
+Here the user can choose to either log in or create a new account. If **Create an account** is chosen, the according method is called, letting the user enter a username and password. If the input is valid, a new instance of the class **User** is created. This instance is then used to add the user data to the worksheet, calling a method in the **SheetService** class. The user can then log in.
+
+If **Log in to your account** is chosen, as well as after creating an account, the login method is called. After the given username and password are validated, the user instance is created by calling an alternative constructor in the **User** class using the validated user data.
+
+![Menu](docs/screenshots/menu.png)
+
+After logging in the user gets to the main menu where they can choose to view or create a recipe or log out. If **Log out** is chosen, a method within the **Cookbook** class is called, which redirects the user to the welcome screen after they press enter again.
 
 ## **Libraries**
 
@@ -211,7 +230,7 @@ Besides the improvements described in the sections below that I made after using
 
 1. **Making a completely object-oriented program without any functions.** 
    - It was a bit hard starting the project from scratch already having the idea of just using classes and methods in mind. I was not sure with which class to start and what methods I would need.
-   - I then decided to just start with *"Spaghetti Code"* and write function after function in the run.py file to get the first few steps of my flowchart to work.
+   - I then decided to just start with *"Spaghetti Code"* and write function after function in the *run.py* file to get the first few steps of my flowchart to work.
    - After I then had an idea of which classes and methods I would need for this code, I began refactoring and structuring it using classes and methods.
 2. **The use of @classmethod and @staticmethod**
    - While I could quickly figure out where a *@staticmethod* would be appropriate, I had a hard time deciding whether to use *@classmethod* for many methods.
@@ -235,13 +254,13 @@ I used the [Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/validator?
 
 #### **Python**
 
-To ensure that my code follows Pep8 style guidelines I installed [Flake8](https://flake8.pycqa.org/en/latest/). I ran the linter on the run.py file and all my class files. At first, I had some errors for lines that were too long and I got the *W605 invalid escape sequence* warning for my ASCII Art. After fixing the line lengths and using a raw string for my ASCII Art as suggested in this [stackoverflow question](https://stackoverflow.com/questions/61497292/getting-pep8-invalid-escape-sequence-warning-trying-to-escape-parentheses-in-a), Flake8 does not show any errors for my Python code.
+To ensure that my code follows Pep8 style guidelines I installed [Flake8](https://flake8.pycqa.org/en/latest/). I ran the linter on the *run.py* file and all my class files. At first, I had some errors for lines that were too long and I got the *W605 invalid escape sequence* warning for my ASCII Art. After fixing the line lengths and using a raw string for my ASCII Art as suggested in this [stackoverflow question](https://stackoverflow.com/questions/61497292/getting-pep8-invalid-escape-sequence-warning-trying-to-escape-parentheses-in-a), Flake8 does not show any errors for my Python code.
 
 ![Flake8 Validation](docs/screenshots/flake8.png)
 
 ### **Lighthouse Testing**
 
-After testing the application with Lighthouse, I updated the button color to ensure better contrast and added a meta description to the template HTML. This lead to values of 99 for *Performance* and 100 for *Accessibility*, *Best Practices* and *SEO*.
+After testing the application with Lighthouse, I updated the button color to ensure better contrast and added a meta description to the template HTML. This led to values of 99 for *Performance* and 100 for *Accessibility*, *Best Practices* and *SEO*.
 
 ![Lighthouse Testing](docs/screenshots/lighthouse_desktop.png)
 
