@@ -163,58 +163,58 @@ I believe I added all the necessary features for a fully-functioning real-world 
 
 I decided to use object-oriented programming and only use classes and methods in my code. Here is a brief overview of my classes and methods.
 
-- **Cookbook**
+- **[Cookbook](classes/cookbook.py)**
   - The main class that interacts with the user and calls other classes.
   - Methods handle user input and call the necessary classes throughout the program.
-- **User**
+- **[User](classes/user.py)**
   - attributes: user_id, username, password
   - Creates a user instance using an alternative constructor when a user logs in or creates an account. User data is stored in and fetched from the worksheet.
-- **Recipe**
+- **[Recipe](classes/recipe.py)**
   - attributes: recipe_id, category, name, instructions, created_by_id
   - Creates a recipe instance when called and has an alternative constructor to create an instance from a dictionary.
   - Stores and deletes recipe data in the worksheet.
-- **Ingredient**
+- **[Ingredient](classes/ingredient.py)**
   - attributes: ingredient_id, ingredient, recipe_id
   - Creates an ingredient instance when called and has an alternative constructor to create an instance from a dictionary.
   - Stores and deletes ingredient data in the worksheet.
 
 To reduce code repetition and make the code more readable and maintainable I added these classes.
 
-- **Mixins** (ClearConsole, StyleConsole, RestartProgram)
+- **[Mixins](classes/mixins.py)** (ClearConsole, StyleConsole, RestartProgram)
   - **ClearConsole**: Mixin containing a method to easily clear the console.
   - **StyleConsole**: Mixin containing a method that creates a custom theme for the rich package.
   - **RestartProgram**: Mixin containing a method to easily restart the program in case of an error or if the user wants to exit.
-- **SheetService**
+- **[SheetService](classes/sheet.py)**
   - A service class to handle all methods regarding Google Sheets.
   - The connection to the API and error handling regarding this connection are handled here.
   - Contains methods to get, store and delete entries from worksheets.
 
 ### **Logic Flow**
 
-The *run.py* file creates an instance of the class **Cookbook**. This handles the flow of the application and calls the other classes when necessary.
+The *run.py* file creates an instance of the class **[Cookbook](classes/cookbook.py)**. This handles the flow of the application and calls the other classes when necessary.
 At initialization, the cookbook clears the terminal and calls the method to show the welcome message.
 
 ![Account selection](docs/screenshots/account_selection.png)
 
-Here the user can choose to either log in or create a new account. If **Create an account** is chosen, the according method is called, letting the user enter a username and password. If the input is valid, a new instance of the class **User** is created. This instance is then used to add the user data to the worksheet, calling a method in the **SheetService** class. The user can then log in.
+Here the user can choose to either log in or create a new account. If **Create an account** is chosen, the according method is called, letting the user enter a username and password. If the input is valid, a new instance of the class **[User](classes/user.py)** is created. This instance is then used to add the user data to the worksheet, calling a method in the **[SheetService](classes/sheet.py)** class. The user can then log in.
 
-If **Log in to your account** is chosen, as well as after creating an account, the login method is called. After the given username and password are validated, the user instance is created by calling an alternative constructor in the **User** class using the validated user data.
+If **Log in to your account** is chosen, as well as after creating an account, the login method is called. After the given username and password are validated, the user instance is created by calling an alternative constructor in the **[User](classes/user.py)** class using the validated user data.
 
 ![Menu](docs/screenshots/menu.png)
 
-After logging in the user gets to the main menu where they can choose to view or create a recipe or log out. If **Log out** is chosen, a method within the **Cookbook** class is called, which redirects the user to the welcome screen after they press enter again.
+After logging in the user gets to the main menu where they can choose to view or create a recipe or log out. If **Log out** is chosen, a method within the **[Cookbook](classes/cookbook.py)** class is called, which redirects the user to the welcome screen after they press enter again.
 
-If **Create a new recipe** is chosen, the *create_recipe* method is called. This calls other methods within the **Cookbook** class which handle the selection and input of the recipe category, name and instruction. After validating the input, a new **Recipe** instance is created and added to the *recipes* worksheet using the same method in **SheetService** as was used to add a new user to the worksheet.\
-After saving the recipe, the ingredients can be added. The user can add one ingredient at a time, as long as the user chooses to add another ingredient. Each validated ingredient creates a new **Ingredient** instance which is then added to the *ingredients* worksheet again using the method in **SheetService**. After the user decides to add no more ingredients, the method to view the created recipe is called.
+If **Create a new recipe** is chosen, the *create_recipe* method is called. This calls other methods within the **[Cookbook](classes/cookbook.py)** class which handle the selection and input of the recipe category, name and instruction. After validating the input, a new **[Recipe](classes/recipe.py)** instance is created and added to the *recipes* worksheet using the same method in **[SheetService](classes/sheet.py)** as was used to add a new user to the worksheet.\
+After saving the recipe, the ingredients can be added. The user can add one ingredient at a time, as long as the user chooses to add another ingredient. Each validated ingredient creates a new **[Ingredient](classes/ingredient.py)** instance which is then added to the *ingredients* worksheet again using the method in **[SheetService](classes/sheet.py)**. After the user decides to add no more ingredients, the method to view the created recipe is called.
 
 ![View recipe](docs/screenshots/view_recipe.png)
 
-If the user chooses **View recipe**, the method to select a recipe is called. This calls the method in the **Cookbook** class that was already used for creating a recipe, letting the user select a category. Then a method from **SheetService** is called, returning all the available recipes for the logged-in user with the selected category.\
-If there are no available recipes, the user is redirected to creating a recipe. Otherwise, the available recipes are shown as a list. After a valid selection was made, the data retrieved from the worksheet for the selected recipe is used to create a **Recipe** instance, calling the alternative constructor in the **Recipe** class and it is given to the method to view the selected recipe.\
-This method in the **Cookbook** class prints the recipe name and instructions. It then calls a method in **SheetService** to get all the ingredient entries belonging to this recipe and prints them as a list.
+If the user chooses **View recipe**, the method to select a recipe is called. This calls the method in the **[Cookbook](classes/cookbook.py)** class that was already used for creating a recipe, letting the user select a category. Then a method from **[SheetService](classes/sheet.py)** is called, returning all the available recipes for the logged-in user with the selected category.\
+If there are no available recipes, the user is redirected to creating a recipe. Otherwise, the available recipes are shown as a list. After a valid selection was made, the data retrieved from the worksheet for the selected recipe is used to create a **[Recipe](classes/recipe.py)** instance, calling the alternative constructor in the **[Recipe](classes/recipe.py)** class and it is given to the method to view the selected recipe.\
+This method in the **[Cookbook](classes/cookbook.py)** class prints the recipe name and instructions. It then calls a method in **[SheetService](classes/sheet.py)** to get all the ingredient entries belonging to this recipe and prints them as a list.
 
-From the recipe the user can continue, which calls the main menu again. The other option is to delete the recipe. The method in **Cookbook** to delete a recipe after confirming the selection iterates through the ingredients. For each ingredient an **Ingredient** instance is created, for this instance, the delete method in the **Ingredient** class is called. This method prints information for the user and uses methods in **SheetService** to get and delete the entry in the worksheet.\
-After each ingredient was deleted, the method to delete the recipe is called in the **Recipe** class. It also prints information and uses the same methods in **SheetService** to get and delete the entry in the worksheet.
+From the recipe the user can continue, which calls the main menu again. The other option is to delete the recipe. The method in **[Cookbook](classes/cookbook.py)** to delete a recipe after confirming the selection iterates through the ingredients. For each ingredient an **[Ingredient](classes/ingredient.py)** instance is created, for this instance, the delete method in the **[Ingredient](classes/ingredient.py)** class is called. This method prints information for the user and uses methods in **SheetService** to get and delete the entry in the worksheet.\
+After each ingredient was deleted, the method to delete the recipe is called in the **[Recipe](classes/recipe.py)** class. It also prints information and uses the same methods in **[SheetService](classes/sheet.py)** to get and delete the entry in the worksheet.
 
 ## **Libraries**
 
