@@ -381,6 +381,7 @@ class Cookbook(ClearConsole, StyleConsole, RestartProgram, SheetService):
 
         :param Recipe recipe: the recipe to delete
         :param list recipe_ingredients: the ingredients of the recipe
+        :param User current_user: the user that is currently logged in
         """
         while True:
             confirm = (input("Do you want to delete the recipe? (y/n)\n")
